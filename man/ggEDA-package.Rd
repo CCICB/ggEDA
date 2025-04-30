@@ -14,7 +14,7 @@ Streamlines exploratory data analysis by providing a turnkey approach to visuali
 Useful links:
 \itemize{
   \item \url{https://github.com/CCICB/ggEDA}
-  \item \url{https://CCICB.github.io/ggEDA/}
+  \item \url{https://ccicb.github.io/ggEDA/}
   \item Report bugs at \url{https://github.com/CCICB/ggEDA/issues}
 }
 

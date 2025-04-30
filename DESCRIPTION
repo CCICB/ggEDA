@@ -15,7 +15,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/CCICB/ggEDA, https://CCICB.github.io/ggEDA/
+URL: https://github.com/CCICB/ggEDA, https://ccicb.github.io/ggEDA/
 BugReports: https://github.com/CCICB/ggEDA/issues
 Imports: 
     assertions (>= 0.2.0),
