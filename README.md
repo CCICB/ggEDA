@@ -19,10 +19,9 @@ size](https://img.shields.io/github/languages/code-size/CCICB/ggEDA.svg)](https:
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/CCICB/ggEDA)
 ![r-universe](https://CCICB.r-universe.dev/badges/ggEDA)
-
+coverage\](<https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg>)\](<https://app.codecov.io/gh/CCICB/ggEDA>)
 [![Codecov test
 coverage](https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA)
-
 <!-- badges: end -->
 
 **ggEDA** streamlines exploratory data analysis by providing turnkey
