@@ -23,7 +23,7 @@ For example, lets add custom-tooltips to the `Magpie` column of the **lazy_birdw
 
 ```{r fig.height=4, fig.width=10, message=FALSE}
 # No Custom Tooltip
-ggstacklazy_birdwatcher)
+ggstack(lazy_birdwatcher)
 ```
 
 We create a `Magpies_tooltip` character column and set the value to either `"More than 3 magpies!'` or `"How boring. Too few magpies (nMagpies)"`. The ggEDA function automatically recognises this column (thanks to the suffix) and sets the tooltip accordingly.
@@ -37,7 +37,7 @@ lazy_birdwatcher["Magpies_tooltip"] <- ifelse(
 )
 
 # Generate a ggEDA plot with the custom tooltip
-ggstacklazy_birdwatcher)
+ggstack(lazy_birdwatcher)
 ```
 
 ## Cross-linking ggEDA plots with other visualisations
