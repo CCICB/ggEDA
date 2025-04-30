@@ -69,8 +69,8 @@ library(ggiraph)
 penguins <- na.omit(read.csv(system.file("penguins.csv", package = "ggEDA")))
 palette_species <- c(Chinstrap = "#C55BCC", Adelie = "#FF7F02", Gentoo = "#047476")
 
-# Create ggEDA plot
-ggEDA_penguins <- ggstack
+# Create ggstack plot
+ggstack_penguins <- ggstack(
   penguins,
   col_id = "name",
   interactive = FALSE,
@@ -92,8 +92,8 @@ gg_umap <- ggplot(df_umap, aes(x = UMAP_1, y = UMAP_2, colour = species, data_id
   scale_color_manual(values = palette_species) +
   theme_bw()
 
-# Combine the ggEDA plot and the umap using patchwork
-combined_plots <- free(gg_umap, type = "label") / free(ggEDA_penguins, side = "tb")
+# Combine the ggstack plot and the umap using patchwork
+combined_plots <- free(gg_umap, type = "label") / free(ggstack_penguins, side = "tb")
 
 # Make interactive
 interactive_multiplot <- girafe(ggobj = combined_plots, height_svg = 6, width_svg = 10, options)
