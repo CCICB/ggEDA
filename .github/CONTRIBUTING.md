@@ -4,32 +4,32 @@ editor_options:
     wrap: 72
 ---
 
-### Contributing to gg1d
+### Contributing to ggEDA
 
-There are many ways to contribute to gg1d.
+There are many ways to contribute to ggEDA.
 
 1.  Request features you would like to by [creating new issues on
-    github](https://github.com/selkamand/gg1d/issues)
-2.  [Make your visualisation packages gg1d-compatible]
-3.  [Directly contribute to the gg1d codebase]
+    github](https://github.com/CCICB/ggEDA/issues)
+2.  [Make your visualisation packages ggEDA-compatible]
+3.  [Directly contribute to the ggEDA codebase]
 
-#### Make your visualisation packages gg1d-compatible
+#### Make your visualisation packages ggEDA-compatible
 
 If your package produces ggplots that you would like to interactively
-link with gg1d visualisations, consider converting your geoms to their
+link with ggEDA visualisations, consider converting your geoms to their
 ggiraph interactive equivalents and adding a data_id based the same
-values you supply to gg1d via the `col_id` argument. That way end-users
-can create a data-linked gg1d plot composed with your packages plots
+values you supply to ggEDA via the `col_id` argument. That way end-users
+can create a data-linked ggEDA plot composed with your packages plots
 using patchwork.
 
-A detailed description of cross-linking between gg1d plots and other
+A detailed description of cross-linking between ggEDA plots and other
 visualisations is available [here].
-(<https://selkamand.github.io/gg1d/articles/advanced_interactivity.html#cross-linking-gg1d-plots-with-other-visualisations>)
+(<https://CCICB.github.io/ggEDA/articles/advanced_interactivity.html#cross-linking-ggEDA-plots-with-other-visualisations>)
 
-#### Directly contribute to the gg1d codebase
+#### Directly contribute to the ggEDA codebase
 
 We welcome contributions from the community to enhance and expand the
-functionality of `gg1d`. Whether you want to fix a bug, add new
+functionality of `ggEDA`. Whether you want to fix a bug, add new
 features, improve documentation, or optimize performance, your efforts
 are highly valued. To get started:
 
@@ -41,7 +41,7 @@ are highly valued. To get started:
     repository to your local machine.
 
     ``` bash
-    git clone https://github.com/selkamand/gg1d.git
+    git clone https://github.com/CCICB/ggEDA.git
     ```
 
 3.  **Create a Branch**
@@ -63,22 +63,22 @@ are highly valued. To get started:
 
 If you encounter any issues, bugs, or have suggestions for improvements,
 please report them using the [GitHub Issues
-Tab](https://github.com/selkamand/gg1d/issues/).
+Tab](https://github.com/CCICB/ggEDA/issues/).
 
 ### Seek Support
 
-For any questions or support regarding the use of gg1d you can:
+For any questions or support regarding the use of ggEDA you can:
 
 -   **Check the Documentation**: Comprehensive documentation is
-    available [here](https://selkamand.github.io/gg1d/index.html).
+    available [here](https://CCICB.github.io/ggEDA/index.html).
 
 -   **Create a** [new
-    issue](https://github.com/selkamand/gg1d/issues/new) with your
+    issue](https://github.com/CCICB/ggEDA/issues/new) with your
     query.
 
 -   **Browse Existing Issues**: Check the
-    [Issues](https://github.com/selkamand/gg1d/issues) page to see if
+    [Issues](https://github.com/CCICB/ggEDA/issues) page to see if
     your query has been addressed.
 
 -   **Contact Us**: If you need direct assistance, please [contact the
-    maintainers directly](mailto:selkamand@ccia.org.au?subject=gg1d)
+    maintainers directly](mailto:CCICB@ccia.org.au?subject=ggEDA)

@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(gg1d)
+library(ggEDA)
 library(datarium)
 library(palmerpenguins)
 ```
@@ -24,10 +24,10 @@ library(palmerpenguins)
 Horsebean feed consistently produces the lowest chicken weights.
 
 ```{r message=FALSE, fig.height=3}
-gg1d(
+ggstack(
   chickwts,
   col_sort = "weight",
-  options = gg1d_options(
+  options = ggstack_options(
     show_legend = TRUE,
     legend_position = "bottom",
     legend_nrow = 1,
@@ -41,9 +41,9 @@ gg1d(
 The setosa species have drastically smaller petals then other iris species.
 
 ```{r message=FALSE, fig.height=7}
-gg1d(
+ggstack(
   iris,
-  options = gg1d_options(show_legend = TRUE)
+  options = ggstack_options(show_legend = TRUE)
 )
 ```
 
@@ -52,7 +52,7 @@ gg1d(
 Most deaths in the titanic were male adults.
 
 ```{r,  message=FALSE, fig.height=4}
-gg1d(
+ggstack(
   titanic.raw,
   palettes = list(
     Sex = c(Male = "#0072B2", Female = "#CC79A7"),
@@ -60,14 +60,14 @@ gg1d(
     Class = c("Crew" = "#F9F7EAFF", "1st" = "#006E37FF", "2nd" = "#8DB580FF", "3rd" = "#D9E5BDFF"),
     Age = c(Child = "#35B779FF", Adult = "#440154FF")
   ),
-  options = gg1d_options(show_legend = TRUE)
+  options = ggstack_options(show_legend = TRUE)
 )
 ```
 
 Lets make the same plot except heirarchically sort on multiple arguments
 
 ```{r,  message=FALSE, fig.height=4}
-gg1d(
+ggstack(
   titanic.raw,
   col_sort = c("Class", "Age", "Sex"), sort_type = "frequency",
   palettes = list(
@@ -76,7 +76,7 @@ gg1d(
     Class = c("Crew" = "#F9F7EAFF", "1st" = "#006E37FF", "2nd" = "#8DB580FF", "3rd" = "#D9E5BDFF"),
     Age = c(Child = "#35B779FF", Adult = "#440154FF")
   ),
-  options = gg1d_options(show_legend = TRUE)
+  options = ggstack_options(show_legend = TRUE)
 )
 ```
 
@@ -91,14 +91,14 @@ library(palmerpenguins)
 # Drop Year Column
 penguins$year <- NULL
 
-gg1d(
+ggstack(
   penguins,
   palettes = list(
     species = c(Chinstrap = "#C55BCC", Adelie = "#FF7F02", Gentoo = "#047476"),
     sex = c(male = "#0072B2", female = "#CC79A7"),
     island = c(Biscoe = "#E69F00", Dream = "#56B4E9", Torgersen = "#009E73")
   ),
-  options = gg1d_options(
+  options = ggstack_options(
     relative_height_numeric = 1.2,
     show_legend = TRUE,
   )
@@ -107,19 +107,19 @@ gg1d(
 
 ## Artificial Data
 
-### Inbuilt gg1d example
+### Inbuilt ggEDA example
 
 ```{r message=FALSE, fig.height = 6}
 # Read data
-path_gg1d <- system.file("example.csv", package = "gg1d")
-df <- read.csv(path_gg1d, header = TRUE, na.strings = "")
+path_ggEDA <- system.file("example.csv", package = "ggEDA")
+df <- read.csv(path_ggEDA, header = TRUE, na.strings = "")
 
 # Plot data, sort by Glasses
-gg1d(
+ggstack(
   df,
   col_id = "ID",
   col_sort = "Glasses",
-  options = gg1d_options(legend_nrow = 2)
+  options = ggstack_options(legend_nrow = 2)
 )
 ```
 
@@ -129,14 +129,14 @@ The simulated "Lazy Birdwatcher" dataset records magpie observations by Robert a
 
 ```{r message=FALSE, fig.height = 4}
 # Plot lazy birdwatcher dataset by Number of Magpies Observed
-gg1d(
+ggstack(
   lazy_birdwatcher,
   col_sort = "Magpies",
   palettes = list(
     Birdwatcher = c(Robert = "#E69F00", Catherine = "#999999"),
     Day = c(Weekday = "#999999", Weekend = "#009E73")
   ),
-  options = gg1d_options(
+  options = ggstack_options(
     show_legend = TRUE,
     fontsize_barplot_y_numbers = 12,
     legend_text_size = 16,

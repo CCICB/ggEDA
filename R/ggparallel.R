@@ -131,7 +131,7 @@ ggparallel <- function(
   categorical_column_names <- colnames(data)[column_types == "categorical"]
   data <- data[,c(numeric_column_names ,col_id, col_colour)]
 
-  assertions::assert_length_greater_than(numeric_column_names, length = 1, msg = "Parallel Coordinate Plots can only be drawn if dataset has >= 2 numeric features. Your dataset has {length(numeric_column_names)}. A gg1d tileplot may be more appropriate.")
+  assertions::assert_length_greater_than(numeric_column_names, length = 1, msg = "Parallel Coordinate Plots can only be drawn if dataset has >= 2 numeric features. Your dataset has {length(numeric_column_names)}. A ggEDA tileplot may be more appropriate.")
 
   if(verbose & is.null(col_colour) & length(categorical_column_names) > 0){
     cli::cli_alert_info("To add colour to plot set {.arg col_colour} to one of: {categorical_column_names}")

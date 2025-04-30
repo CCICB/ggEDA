@@ -1,5 +1,8 @@
 ---
 output: github_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,76 +16,86 @@ knitr::opts_chunk$set(
 )
 ```
 
-# gg1d <a href="https://selkamand.github.io/gg1d/"><img src="man/figures/logo.png" align="right" height="138" alt="gg1d website" /></a>
+# ggEDA <a href="https://CCICB.github.io/ggEDA/"><img src="man/figures/logo.png" alt="ggEDA website" align="right" height="138"/></a>
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/gg1d)](https://CRAN.R-project.org/package=gg1d)
-[![R-CMD-check](https://github.com/selkamand/gg1d/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/gg1d/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Codecov test coverage](https://codecov.io/gh/selkamand/gg1d/branch/main/graph/badge.svg)](https://app.codecov.io/gh/selkamand/gg1d?branch=main)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-closed/selkamand/gg1d)
-[![code size](https://img.shields.io/github/languages/code-size/selkamand/gg1d.svg)](https://github.com/selkamand/gg1d)
-![GitHub last commit](https://img.shields.io/github/last-commit/selkamand/gg1d)
-![r-universe](https://selkamand.r-universe.dev/badges/gg1d)
 
-[![Codecov test coverage](https://codecov.io/gh/selkamand/gg1d/graph/badge.svg)](https://app.codecov.io/gh/selkamand/gg1d)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ggEDA)](https://CRAN.R-project.org/package=ggEDA)
+[![R-CMD-check](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/CCICB/ggEDA/branch/main/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA?branch=main)
+![GitHub Issues or Pull
+Requests](https://img.shields.io/github/issues-closed/CCICB/ggEDA)
+[![code
+size](https://img.shields.io/github/languages/code-size/CCICB/ggEDA.svg)](https://github.com/CCICB/ggEDA)
+![GitHub last
+commit](https://img.shields.io/github/last-commit/CCICB/ggEDA)
+![r-universe](https://CCICB.r-universe.dev/badges/ggEDA)
+
+[![Codecov test
+coverage](https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA)
+
 <!-- badges: end -->
 
-Effortlessly visualize all columns in a data frame with vertically aligned plots and automatic plot selection based on variable type. Plots are fully interactive, and custom tooltips can be added.
+**ggEDA** streamlines exploratory data analysis by providing turnkey
+approaches to visualising n-dimensional data which can graphically
+reveal correlative or associative relationships between two or more
+features:
 
-A graphical user interface to all gg1d visualisations is available at https://selkamand.github.io/EDA/
-
-**Why 1 dimensional plots?**
-
-To understand trends in your data, especially correlative relationships between 2 or more features, it can be useful to densely stack visual representations of each feature vertically, regardless of data type. By unifying the $x$-axis across each plot, **gg1d** turns a series of 1D plots into an $n\text{-dimensional}$ visualization where $n = \text{number of columns in dataset}$. 
-Note the key idea of gg1d is to 'preserve the individual.' **gg1d** does **NOT** plot distributions of properties, but rather each value of a feature for each subject/observation in the dataset.
-
-gg1d can be used for exploratory data analysis (EDA) or to produce publication quality graphics summarizing a dataset.
-
+-   **ggstack**: tiled one-dimensional visualisations that more
+    effectively show missingness and complex categorical relationships
+    in smaller datasets.
+-   **ggparallel**: parallel coordinate plots (PCPs) well suited for
+    examining large datasets with mostly quantitative features.
 
 ## Installation
 
 ``` r
-install.packages("gg1d")
+install.packages("ggEDA")
 ```
 
 ### Development Version
 
-You can install the development version of gg1d from [GitHub](https://github.com/) with:
+You can install the development version of ggEDA from
+[GitHub](https://github.com/CCICB/ggEDA) with:
 
 ``` r
 if (!require("remotes"))
     install.packages("remotes")
 
-remotes::install_github("selkamand/gg1d")
+remotes::install_github("CCICB/ggEDA")
 ```
 
 Or from R-universe with:
 
 ``` r
-install.packages("gg1d", repos = "https://ropensci.r-universe.dev")
+install.packages("ggEDA", repos = "https://ropensci.r-universe.dev")
 ```
 
 ## Quick Start
 
-For examples of interactive gg1d plots see the [gg1d gallery](https://selkamand.github.io/gg1d/articles/gallery.html)
+For examples of interactive EDA plots see the [ggEDA
+gallery](https://CCICB.github.io/ggEDA/articles/gallery.html)
 
 ```{r, example, fig.width = 7, fig.height = 5}
 # Load library
-library(gg1d)
+library(ggEDA)
 
 # Read data
-path_gg1d <- system.file("example.csv", package = "gg1d")
-df <- read.csv(path_gg1d, header = TRUE, na.strings = "")
+path_dataset <- system.file("example.csv", package = "ggEDA")
+df <- read.csv(path_dataset, header = TRUE, na.strings = "")
 
 # Plot data, sort by Glasses
-gg1d(
+ggstack(
   df,
   col_id = "ID",
   col_sort = "Glasses",
   interactive = FALSE,
   verbose = FALSE,
-  options = gg1d_options(legend_nrow = 2)
+  options = ggstack_options(legend_nrow = 2)
 )
 ```
 
@@ -91,7 +104,7 @@ gg1d(
 Customise colours by supplying a named list to the `palettes` argument
 
 ```{r customise_colours, fig.width = 7, fig.height = 5}
-gg1d(
+ggstack(
   df,
   col_id = "ID",
   col_sort = "Glasses",
@@ -102,14 +115,14 @@ gg1d(
   )),
   interactive = FALSE,
   verbose = FALSE,
-  options = gg1d_options(legend_nrow = 2)
+  options = ggstack_options(legend_nrow = 2)
 )
 ```
 
-
 ## Parallel Coordinate Plots
 
-For datasets with many observations and mostly numeric features, parallel coordinate plots may be more appropriate.
+For datasets with many observations and mostly numeric features,
+parallel coordinate plots may be more appropriate.
 
 ```{r minibeans_class, fig.width = 7, fig.height = 5}
 ggparallel(
@@ -119,7 +132,6 @@ ggparallel(
  interactive = FALSE
 )
 ```
-
 
 ```{r minibeans_highlight, fig.width = 7, fig.height = 5}
  ggparallel(
@@ -139,8 +151,9 @@ ggparallel(
  )
 ```
 
-
 ## Community Contributions
 
 All types of contributions are encouraged and valued. See our [guide to
-community contributions](https://selkamand.github.io/gg1d/CONTRIBUTING.html) for different ways to help.
+community
+contributions](https://CCICB.github.io/ggEDA/CONTRIBUTING.html) for
+different ways to help.

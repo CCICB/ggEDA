@@ -11,13 +11,13 @@ knitr::opts_chunk$set(
 
 A major challenge when visualizing parallel coordinate plots is to choose the order in which axes should be displayed.
 
-This article describes the approach we use for crossing minimisation. Note that there are other approaches that do not explicitly attempt to minimise crossings, but rather order axes based on how informatively they distinguish groups of interest. For example gg1d supports ordering axes based on how much mutual information they share with the feature being coloured by.
+This article describes the approach we use for crossing minimisation. Note that there are other approaches that do not explicitly attempt to minimise crossings, but rather order axes based on how informatively they distinguish groups of interest. For example ggEDA supports ordering axes based on how much mutual information they share with the feature being coloured by.
 
-Sometimes however, especially if you're not colouring by a particular column of interest, crossing minimisation is the most sensible approach. Crossing minimimisation is a more complex topic, so we're dedicating a full article to breaking down the approach used in gg1d. Note crossing minimisation is automatically employed when `order_columns_by = "auto"` and no colouring is applied
+Sometimes however, especially if you're not colouring by a particular column of interest, crossing minimisation is the most sensible approach. Crossing minimimisation is a more complex topic, so we're dedicating a full article to breaking down the approach used in ggEDA. Note crossing minimisation is automatically employed when `order_columns_by = "auto"` and no colouring is applied
 
 Here we describe an approach that involves
 
-1.  For each pair of dimensions, count how many crossings occur. (Could be extended to support axis inversions by inverting the axis, computing crossings again, and taking the minimum, although this is not yet implemented in gg1d).
+1.  For each pair of dimensions, count how many crossings occur. (Could be extended to support axis inversions by inverting the axis, computing crossings again, and taking the minimum, although this is not yet implemented in ggEDA).
 2.  Conceptualise this pairwise matrix as a graph, where each dimension is a node, and edge weights are the number of crossings between them. Our problem is finding the 'shortest' (i.e. lowest total crossings) path through the graph that visits each node once.
 3.  Convert this to the [travelling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) - depending on the algorithm you use, you may need to add an extra node that is connected to every other node with '0' crossings (to serve as the start-point). We won't need to do this (for reasons that will become clear when we talk about the algorithm)
 4.  If the number of dimensions is small (\<8) we can find the optimal axis-order by brute-force. If the number of dimensions is larger (\>=8), we'll use the **repetitive nearest neighbor (rnn)** heuristic approach with two-opt optimisation (**two-opt**), implemented in the\`TSP\` package.

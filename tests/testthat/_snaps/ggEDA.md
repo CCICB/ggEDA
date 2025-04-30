@@ -1,7 +1,7 @@
-# gg1d heirarchical sort works
+# ggEDA heirarchical sort works
 
     Code
-      gg1d(data = mock_data, col_sort = c("Category2", "Logical"), return = "data",
+      ggstack(data = mock_data, col_sort = c("Category2", "Logical"), return = "data",
       verbose = FALSE)
     Output
          Category2 Logical ID Category Numeric Tooltip DefaultID
@@ -36,7 +36,7 @@
 ---
 
     Code
-      gg1d(data = mock_data, col_sort = c("Category2", "Logical"), sort_type = "alphabetical",
+      ggstack(data = mock_data, col_sort = c("Category2", "Logical"), sort_type = "alphabetical",
       desc = FALSE, order_matches_sort = TRUE, return = "data", verbose = FALSE)
     Output
          Category2 Logical ID Category Numeric Tooltip DefaultID
@@ -54,7 +54,7 @@
 ---
 
     Code
-      gg1d(data = mock_data, col_sort = c("Category2", "Logical"), sort_type = "alphabetical",
+      ggstack(data = mock_data, col_sort = c("Category2", "Logical"), sort_type = "alphabetical",
       desc = TRUE, order_matches_sort = TRUE, return = "data", verbose = FALSE)
     Output
          Category2 Logical ID Category Numeric Tooltip DefaultID

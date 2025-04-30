@@ -10,10 +10,10 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(gg1d)
+library(ggEDA)
 ```
 
-This vignette demonstrates how to enhance the interactivity of gg1d visualizations by adding custom tooltips or cross-linking them with other plots, such as UMAP visualizations.
+This vignette demonstrates how to enhance the interactivity of ggEDA visualizations by adding custom tooltips or cross-linking them with other plots, such as UMAP visualizations.
 
 ## Adding custom tooltips
 
@@ -23,10 +23,10 @@ For example, lets add custom-tooltips to the `Magpie` column of the **lazy_birdw
 
 ```{r fig.height=4, fig.width=10, message=FALSE}
 # No Custom Tooltip
-gg1d(lazy_birdwatcher)
+ggstacklazy_birdwatcher)
 ```
 
-We create a `Magpies_tooltip` character column and set the value to either `"More than 3 magpies!'` or `"How boring. Too few magpies (nMagpies)"`. The gg1d function automatically recognises this column (thanks to the suffix) and sets the tooltip accordingly.
+We create a `Magpies_tooltip` character column and set the value to either `"More than 3 magpies!'` or `"How boring. Too few magpies (nMagpies)"`. The ggEDA function automatically recognises this column (thanks to the suffix) and sets the tooltip accordingly.
 
 ```{r message=FALSE, fig.height=4, fig.width=10}
 # Add a custom tooltip column
@@ -36,19 +36,19 @@ lazy_birdwatcher["Magpies_tooltip"] <- ifelse(
   no = paste0("How boring. Too few magpies (", lazy_birdwatcher[["Magpies"]], ")")
 )
 
-# Generate a gg1d plot with the custom tooltip
-gg1d(lazy_birdwatcher)
+# Generate a ggEDA plot with the custom tooltip
+ggstacklazy_birdwatcher)
 ```
 
-## Cross-linking gg1d plots with other visualisations
+## Cross-linking ggEDA plots with other visualisations
 
-Cross-linking enables coordinated exploration of gg1d plots with other visualizations, produced by custom scripts or other packages. This workflow demonstrates how to combine interactive plots using `ggiraph` and `patchwork`.
+Cross-linking enables coordinated exploration of ggEDA plots with other visualizations, produced by custom scripts or other packages. This workflow demonstrates how to combine interactive plots using `ggiraph` and `patchwork`.
 
-As an example, we'll cross-link a gg1d visualisation and a UMAP visualisation summarising the `palmer_penguins` dataset.
+As an example, we'll cross-link a ggEDA visualisation and a UMAP visualisation summarising the `palmer_penguins` dataset.
 
 ### Workflow
 
-1.  **Create your gg1d plot**. Ensure you set `col_id` to embed a data-identifier required for cross-linking plots (in our case, we will use the unique name given to the penguins). Also set `interactive = FALSE` to force gg1 to returns a ggplot object instead of a htmlwidget (we'll add the interactivity back in after we compose all our plots). For example, lets
+1.  **Create your ggEDA plot**. Ensure you set `col_id` to embed a data-identifier required for cross-linking plots (in our case, we will use the unique name given to the penguins). Also set `interactive = FALSE` to force gg1 to returns a ggplot object instead of a htmlwidget (we'll add the interactivity back in after we compose all our plots). For example, lets
 
 2.  Create the ggplot you want to co-explore with, adding latent interactivity using the ggiraph package (e.g. use `geom_point_interactive` instead of `geom_point` and add a `data_id` aesthetic set to the same column as col_id)
 
@@ -66,17 +66,17 @@ library(ggiraph)
 
 
 # Prepare Data & Colour Schemes
-penguins <- na.omit(read.csv(system.file("penguins.csv", package = "gg1d")))
+penguins <- na.omit(read.csv(system.file("penguins.csv", package = "ggEDA")))
 palette_species <- c(Chinstrap = "#C55BCC", Adelie = "#FF7F02", Gentoo = "#047476")
 
-# Create gg1d plot
-gg1d_penguins <- gg1d(
+# Create ggEDA plot
+ggEDA_penguins <- ggstack
   penguins,
   col_id = "name",
   interactive = FALSE,
   col_sort = "species",
   palettes = list(species = palette_species),
-  options = gg1d_options(relative_height_numeric = 1.2, show_legend = FALSE)
+  options = ggstack_options(relative_height_numeric = 1.2, show_legend = FALSE)
 )
 
 # Perform the umap
@@ -92,8 +92,8 @@ gg_umap <- ggplot(df_umap, aes(x = UMAP_1, y = UMAP_2, colour = species, data_id
   scale_color_manual(values = palette_species) +
   theme_bw()
 
-# Combine the gg1d plot and the umap using patchwork
-combined_plots <- free(gg_umap, type = "label") / free(gg1d_penguins, side = "tb")
+# Combine the ggEDA plot and the umap using patchwork
+combined_plots <- free(gg_umap, type = "label") / free(ggEDA_penguins, side = "tb")
 
 # Make interactive
 interactive_multiplot <- girafe(ggobj = combined_plots, height_svg = 6, width_svg = 10, options)

@@ -2,7 +2,7 @@ utils::globalVariables(".data")
 
 #' AutoPlot an entire data.frame
 #'
-#' Visualize all columns in a data frame with gg1d's vertically aligned plots
+#' Visualize all columns in a data frame with ggEDA's vertically aligned plots
 #' and automatic plot selection based on variable type.
 #' Plots are fully interactive, and custom tooltips can be added.
 #'
@@ -21,7 +21,7 @@ utils::globalVariables(".data")
 #' @param interactive produce interactive ggiraph visualiastion (flag)
 #' @param return a string describing what this function should return. Options include:
 #'   \itemize{
-#'     \item \strong{plot}: Return the gg1d visualisation (default)
+#'     \item \strong{plot}: Return the ggEDA visualisation (default)
 #'     \item \strong{colum_info}: Return a data.frame describing the columns the dataset.
 #'     \item \strong{data}: Return the processed dataset used for plotting.
 #'   }
@@ -36,26 +36,26 @@ utils::globalVariables(".data")
 #' @param tooltip_column_suffix the suffix added to a column name that indicates column should be used as a tooltip (string)
 #' @param ignore_column_regex a regex string that, if matches a column name,  will cause that  column to be excluded from plotting (string). If NULL no regex check will be performed. (default: "_ignore$")
 #' @param convert_binary_numeric_to_factor  If a numeric column conatins only values 0, 1, & NA, then automatically convert to a factor.
-#' @param options a list of additional visual parameters created by calling [gg1d_options()]. See \code{\link{gg1d_options}} for details.
+#' @param options a list of additional visual parameters created by calling [ggstack_options()]. See \code{\link{ggstack_options}} for details.
 #'
 #' @return ggiraph interactive visualisation
 #'
 #' @examples
-#' path_gg1d <- system.file("example.csv", package = "gg1d")
-#' df <- read.csv(path_gg1d, header = TRUE, na.strings = "")
+#' path_example <- system.file("example.csv", package = "ggEDA")
+#' df <- read.csv(path_example, header = TRUE, na.strings = "")
 #'
 #' # Create Basic Plot
-#' gg1d(df, col_id = "ID", col_sort = "Glasses")
+#' ggstack(df, col_id = "ID", col_sort = "Glasses")
 #'
-#' # Configure plot gg1d_options()
-#' gg1d(
+#' # Configure plot ggstack_options()
+#' ggstack(
 #'   lazy_birdwatcher,
 #'   col_sort = "Magpies",
 #'   palettes = list(
 #'     Birdwatcher = c(Robert = "#E69F00", Catherine = "#999999"),
 #'     Day = c(Weekday = "#999999", Weekend = "#009E73")
 #'   ),
-#'   options = gg1d_options(
+#'   options = ggstack_options(
 #'     show_legend = TRUE,
 #'     fontsize_barplot_y_numbers = 12,
 #'     legend_text_size = 16,
@@ -66,7 +66,7 @@ utils::globalVariables(".data")
 #'
 #' @export
 #'
-gg1d <- function(
+ggstack <- function(
     data, col_id = NULL, col_sort = NULL,
     order_matches_sort = TRUE,
     maxlevels = 7,
@@ -83,7 +83,7 @@ gg1d <- function(
     tooltip_column_suffix = "_tooltip",
     ignore_column_regex = "_ignore$",
     convert_binary_numeric_to_factor = TRUE,
-    options = gg1d_options(show_legend = !interactive)) {
+    options = ggstack_options(show_legend = !interactive)) {
   # Data validation
   assertions::assert_dataframe(data)
   assertions::assert_number(maxlevels)
@@ -93,13 +93,13 @@ gg1d <- function(
   assertions::assert_flag(desc)
   assertions::assert_string(tooltip_column_suffix)
   if(!is.null(ignore_column_regex)) assertions::assert_string(ignore_column_regex)
-  assertions::assert_class(options, "gg1d_options", msg = "The options argument must be created using {.code gg1d_options()}")
+  assertions::assert_class(options, "ggstack_options", msg = "The options argument must be created using {.code ggstack_options()}")
   assertions::assert_number(max_plottable_cols)
   assertions::assert_greater_than(max_plottable_cols, 0)
   assertions::assert_flag(order_matches_sort)
   assertions::assert_flag(convert_binary_numeric_to_factor)
 
-  # Conditional checks for non-gg1d_options parameters
+  # Conditional checks for non-ggstack_options parameters
   if (!is.null(cols_to_plot)) assertions::assert_names_include(data, names = cols_to_plot)
   if (!is.null(palettes)) assertions::assert_list(palettes)
   if (!all(colnames(data) %in% names(palettes))) assertions::assert_greater_than_or_equal_to(length(options$colours_default), minimum = maxlevels)
@@ -192,7 +192,7 @@ gg1d <- function(
   else if(return == "data")
    return(data)
   else if(return != "plot")
-    stop("No implementation has been written for debug = ", debug, ". Please create a github issue with this error message: https://github.com/selkamand/gg1d/issues/new")
+    stop("No implementation has been written for debug = ", debug, ". Please create a github issue with this error message: https://github.com/CCICB/ggEDA/issues/new")
 
   # Plot --------------------------------------------------------------------
   if (verbose) cli::cli_h3("Generating Plot")
@@ -213,14 +213,14 @@ gg1d <- function(
       mutinfo_vs_col_sort <- mutinfo(df_plottable_data[-which(plottable_cols %in% col_sort)], target = df_plottable_data[[col_sort[1]]])
       plottable_cols <- names(mutinfo_vs_col_sort)[seq_len(max_plottable_cols-length(col_sort))]
       plottable_cols <- c(col_sort, plottable_cols)
-      cli::cli_alert_warning("Autoplotting > {max_plottable_cols} fields by `gg1d` is not recommended (visualisation ends up very squished). Chossing the {max_plottable_cols}/{n_plottable_cols} plottable columns which maximise mutual information with `{col_sort}`. To show all plottable columns, set {.code limit_plots = FALSE}. Alternatively, manually choose which columns are plotted by setting `cols_to_plot`")
+      cli::cli_alert_warning("Autoplotting > {max_plottable_cols} fields by `ggEDA` is not recommended (visualisation ends up very squished). Chossing the {max_plottable_cols}/{n_plottable_cols} plottable columns which maximise mutual information with `{col_sort}`. To show all plottable columns, set {.code limit_plots = FALSE}. Alternatively, manually choose which columns are plotted by setting `cols_to_plot`")
     }
     else {
       optimal_axis_order <- get_optimal_axis_order(data = df_plottable_data, metric = "mutinfo", verbose = FALSE)
       # Only consider the first {max_plottable_cols} columns plottable.
       plottable_cols <- optimal_axis_order[seq_len(max_plottable_cols)]
       col_sort <- plottable_cols[1]
-      cli::cli_alert_warning("Autoplotting > {max_plottable_cols} fields by `gg1d` is not recommended (visualisation ends up very squished). Choosing {max_plottable_cols}/{n_plottable_cols} plottable columns to maximise total mutual information. To show all plottable columns, set {.code limit_plots = FALSE}. Alternatively, manually choose which columns are plotted by setting `cols_to_plot`")
+      cli::cli_alert_warning("Autoplotting > {max_plottable_cols} fields by `ggEDA` is not recommended (visualisation ends up very squished). Choosing {max_plottable_cols}/{n_plottable_cols} plottable columns to maximise total mutual information. To show all plottable columns, set {.code limit_plots = FALSE}. Alternatively, manually choose which columns are plotted by setting `cols_to_plot`")
     }
 
     # Apply New plottable columns
@@ -469,8 +469,8 @@ gg1d <- function(
 
 #' Parse a tibble and ensure it meets standards
 #'
-#' @inheritParams gg1d
-#' @inheritParams gg1d_options
+#' @inheritParams ggstack
+#' @inheritParams ggstack_options
 #'
 #' @return tibble with the following columns:
 #' 1) colnames

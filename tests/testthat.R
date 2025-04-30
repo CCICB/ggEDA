@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(gg1d)
+library(ggEDA)
 
-test_check("gg1d")
+test_check("ggEDA")

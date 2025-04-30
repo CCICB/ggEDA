@@ -1,6 +1,6 @@
-Package: gg1d
+Package: ggEDA
 Title: Exploratory Data Analysis using Tiled One-Dimensional Graphics
-Version: 0.1.0.9000
+Version: 0.0.0.9000
 Authors@R: 
     c(
       person("Sam", "El-Kamand", , "sam.elkamand@gmail.com", role = c("aut", "cre"),
@@ -15,8 +15,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/selkamand/gg1d, https://selkamand.github.io/gg1d/
-BugReports: https://github.com/selkamand/gg1d/issues
+URL: https://github.com/CCICB/ggEDA, https://CCICB.github.io/ggEDA/
+BugReports: https://github.com/CCICB/ggEDA/issues
 Imports: 
     assertions (>= 0.2.0),
     cli,
