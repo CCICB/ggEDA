@@ -6,22 +6,18 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ggEDA)](https://CRAN.R-project.org/package=ggEDA)
-[![R-CMD-check](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Codecov test
-coverage](https://codecov.io/gh/CCICB/ggEDA/branch/main/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA?branch=main)
-![GitHub Issues or Pull
-Requests](https://img.shields.io/github/issues-closed/CCICB/ggEDA)
-[![code
-size](https://img.shields.io/github/languages/code-size/CCICB/ggEDA.svg)](https://github.com/CCICB/ggEDA)
-![GitHub last
-commit](https://img.shields.io/github/last-commit/CCICB/ggEDA)
-![r-universe](https://CCICB.r-universe.dev/badges/ggEDA)
-coverage\](<https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg>)\](<https://app.codecov.io/gh/CCICB/ggEDA>)
-[![Codecov test
-coverage](https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA)
+version](https://img.shields.io/cran/v/ggEDA.svg)](https://CRAN.R-project.org/package=ggEDA)  
+[![R-CMD-check](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml)  
+[![lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)  
+[![Codecov branch
+coverage](https://codecov.io/gh/CCICB/ggEDA/branch/main/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA?branch=main)  
+[![Issues](https://img.shields.io/github/issues/CCICB/ggEDA)](https://github.com/CCICB/ggEDA/issues)  
+[![Code
+size](https://img.shields.io/github/languages/code-size/CCICB/ggEDA)](https://github.com/CCICB/ggEDA)  
+[![Last
+commit](https://img.shields.io/github/last-commit/CCICB/ggEDA)](https://github.com/CCICB/ggEDA/commits/main)  
+[![r-universe](https://ccicb.r-universe.dev/badges/ggEDA)](https://ccicb.r-universe.dev)
 <!-- badges: end -->
 
 **ggEDA** streamlines exploratory data analysis by providing turnkey
