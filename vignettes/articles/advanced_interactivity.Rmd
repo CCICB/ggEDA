@@ -44,11 +44,11 @@ ggstack(lazy_birdwatcher)
 
 Cross-linking enables coordinated exploration of ggEDA plots with other visualizations, produced by custom scripts or other packages. This workflow demonstrates how to combine interactive plots using `ggiraph` and `patchwork`.
 
-As an example, we'll cross-link a ggEDA visualisation and a UMAP visualisation summarising the `palmer_penguins` dataset.
+As an example, we'll cross-link a ggstack visualisation and a UMAP visualisation summarising the `palmer_penguins` dataset.
 
 ### Workflow
 
-1.  **Create your ggEDA plot**. Ensure you set `col_id` to embed a data-identifier required for cross-linking plots (in our case, we will use the unique name given to the penguins). Also set `interactive = FALSE` to force gg1 to returns a ggplot object instead of a htmlwidget (we'll add the interactivity back in after we compose all our plots). For example, lets
+1.  **Create your ggstack plot**. Ensure you set `col_id` to embed a data-identifier required for cross-linking plots (in our case, we will use the unique name given to the penguins). Also set `interactive = FALSE` to force gg1 to returns a ggplot object instead of a htmlwidget (we'll add the interactivity back in after we compose all our plots). For example, lets
 
 2.  Create the ggplot you want to co-explore with, adding latent interactivity using the ggiraph package (e.g. use `geom_point_interactive` instead of `geom_point` and add a `data_id` aesthetic set to the same column as col_id)
 
