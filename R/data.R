@@ -45,3 +45,34 @@
 #'
 #' @source Koklu, M, and IA Ozkan. 2020. Multiclass Classification of Dry Beans Using Computer Vision and Machine Learning Techniques. Computers and Electronics in Agriculture, 174: 105507. doi: 10.1016/j.compag.2020.105507, https://doi.org/10.24432/C50S4B
 "minibeans"
+
+
+
+#' Baseball Fans Dataset
+#'
+#' An artificially generated dataset describing
+#' basic demographics and accessorization choices of baseball fans as part of a
+#' a hypothetical market research study from stadium merchandise vendors. None of the data are real; they were
+#' produced for illustrative and testing purposes only.
+#'
+#' @format ## `baseballfans`
+#' A data frame with 19 rows and 10 columns:
+#' \describe{
+#' \item{ID}{Unique integer identifier for each individual.}
+#' \item{Age}{Age in years at time of observation.}
+#' \item{Gender}{Self‐reported gender (“Male” or “Female”).}
+#' \item{EyeColour}{Eye color (“Brown”, “Green”, “Blue”), or missing (NA) if not recorded.}
+#' \item{Height}{Height in centimeters; missing (NA) if not recorded.}
+#' \item{HairColour}{Hair color (“Black”, “Blond”, “Red”, “Brown”).}
+#' \item{Glasses}{Logical flag (TRUE/FALSE) indicating whether the individual wears glasses.}
+#' \item{WearingHat}{Logical flag (TRUE/FALSE) indicating whether the individual is wearing a hat.}
+#' \item{WearingHat_tooltip}{Type of hat worn, if any (e.g., “baseball cap”, “stetson”, “fedora”, “top hat”); empty when WearingHat == FALSE.}
+#' \item{Date}{Date of observation in day/month/year format (e.g., 9/05/2023). Stored as character vector}
+#' }
+#'
+#' #' @source
+#' Synthetic data; no real persons were observed.
+#'
+#' @details
+#' This mock dataset was created to demonstrate ggEDA functionality. All entries are fictional.
+"baseballfans"
