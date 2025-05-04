@@ -41,11 +41,9 @@ utils::globalVariables(".data")
 #' @return ggiraph interactive visualisation
 #'
 #' @examples
-#' path_example <- system.file("example.csv", package = "ggEDA")
-#' df <- read.csv(path_example, header = TRUE, na.strings = "")
 #'
 #' # Create Basic Plot
-#' ggstack(df, col_id = "ID", col_sort = "Glasses")
+#' ggstack(baseballfans, col_id = "ID", col_sort = "Glasses")
 #'
 #' # Configure plot ggstack_options()
 #' ggstack(

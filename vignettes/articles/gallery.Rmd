@@ -110,13 +110,9 @@ ggstack(
 ### Inbuilt ggEDA example
 
 ```{r message=FALSE, fig.height = 6}
-# Read data
-path_ggEDA <- system.file("example.csv", package = "ggEDA")
-df <- read.csv(path_ggEDA, header = TRUE, na.strings = "")
-
 # Plot data, sort by Glasses
 ggstack(
-  df,
+  baseballfans,
   col_id = "ID",
   col_sort = "Glasses",
   options = ggstack_options(legend_nrow = 2)
