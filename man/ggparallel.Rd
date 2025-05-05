@@ -97,7 +97,7 @@ ggparallel(
 ggparallel(
   data = minibeans,
   col_colour = "Class",
-  order_columns_by = "auto"
+  order_columns_by = "auto",
   options = ggparallel_options(show_legend = FALSE)
 )
 
