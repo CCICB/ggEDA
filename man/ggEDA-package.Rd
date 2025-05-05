@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Provides interactive visualisations for exploratory data analysis of high-dimensional datasets. Includes parallel coordinate plots (PCPs) for exploring large datasets with mostly quantitative features, but also stacked one-dimensional visualisations that more effectively show missingness and complex categorical relationships in smaller datasets.
+Provides interactive visualisations for exploratory data analysis of high-dimensional datasets. Includes parallel coordinate plots for exploring large datasets with mostly quantitative features, but also stacked one-dimensional visualisations that more effectively show missingness and complex categorical relationships in smaller datasets.
 }
 \seealso{
 Useful links:

@@ -8,7 +8,7 @@ Authors@R:
       person("Children's Cancer Institute Australia", role = c("cph"))
      )
 Description: Provides interactive visualisations for exploratory data analysis of high-dimensional datasets.
-  Includes parallel coordinate plots (PCPs) for exploring large datasets with mostly quantitative features, 
+  Includes parallel coordinate plots for exploring large datasets with mostly quantitative features, 
   but also stacked one-dimensional visualisations that more effectively show missingness and complex categorical relationships in smaller datasets.
 License: MIT + file LICENSE
 Encoding: UTF-8
