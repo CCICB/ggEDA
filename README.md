@@ -64,13 +64,9 @@ gallery](https://CCICB.github.io/ggEDA/articles/gallery.html)
 # Load library
 library(ggEDA)
 
-# Read data
-path_dataset <- system.file("example.csv", package = "ggEDA")
-df <- read.csv(path_dataset, header = TRUE, na.strings = "")
-
 # Plot data, sort by Glasses
 ggstack(
-  df,
+  baseballfans,
   col_id = "ID",
   col_sort = "Glasses",
   interactive = FALSE,
@@ -87,7 +83,7 @@ Customise colours by supplying a named list to the `palettes` argument
 
 ``` r
 ggstack(
-  df,
+  baseballfans,
   col_id = "ID",
   col_sort = "Glasses",
   palettes = list("EyeColour" = c(
