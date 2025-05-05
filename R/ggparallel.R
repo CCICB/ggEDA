@@ -56,6 +56,14 @@
 #'   order_columns_by = "auto"
 #' )
 #'
+#' # Customise appearance using options argument
+#' ggparallel(
+#'   data = minibeans,
+#'   col_colour = "Class",
+#'   order_columns_by = "auto"
+#'   options = ggparallel_options(show_legend = FALSE)
+#' )
+#'
 #' @export
 #'
 ggparallel <- function(
@@ -77,7 +85,7 @@ ggparallel <- function(
 
   # Assertions
   assertions::assert_dataframe(data)
-  assertions::assert_class(options, "ggparallel_options")
+  assertions::assert_class(options, "ggparallel_options", msg = "Value parsed to 'options' argument must be created by {.code ggparallel_options()}")
 
   # Argument Matching
   return <- rlang::arg_match(return)

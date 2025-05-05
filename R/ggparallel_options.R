@@ -14,7 +14,7 @@
 #' @param max_digits_bounds Number of digits to round the axis bounds label text to (number)
 #' @param line_alpha Alpha of line geom (number)
 #' @param line_width Width of the line geom (number)
-#' @param line_type Type of line geom (number)
+#' @param line_type Type of line geom (number or string. see [aes_linetype_size_shape()] for valid options)
 #' @param x_axis_gridlines Customise look of x axis gridlines. Must be either a call to [ggplot2::element_line()] or [ggplot2::element_blank()].
 #' @param x_axis_text_angle Angle of the x axis text describing column names (number)
 #' @param x_axis_text_hjust Horizontal Justification of the x axis text describing column names (number)
@@ -92,7 +92,10 @@ ggparallel_options <- function(
 
   # Geometric Properties
   assertions::assert_number(line_alpha)
-  assertions::assert_number(line_type)
+  assertions::assert_no_missing(line_type)
+  assertions::assert_non_null(line_type)
+  if(is.numeric(line_type)) assertions::assert_one_of(line_type, 1:6)
+  if(is.character(line_type)) assertions::assert_one_of(line_type, c("blank", "solid", "dashed", "dotted", "dotdash", "longdash", "twodash"))
   if(!is.null(line_width)) assertions::assert_number(line_width)
 
   # Element Theming
