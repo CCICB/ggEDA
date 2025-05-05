@@ -69,7 +69,7 @@ ggparallel_options(
 
 \item{line_width}{Width of the line geom (number)}
 
-\item{line_type}{Type of line geom (number or string. see \code{\link[=aes_linetype_size_shape]{aes_linetype_size_shape()}} for valid options)}
+\item{line_type}{Type of line geom (number or string. see \code{\link[ggplot2:aes_linetype_size_shape]{ggplot2::aes_linetype_size_shape()}} for valid options)}
 
 \item{x_axis_gridlines}{Customise look of x axis gridlines. Must be either a call to \code{\link[ggplot2:element]{ggplot2::element_line()}} or \code{\link[ggplot2:element]{ggplot2::element_blank()}}.}
 

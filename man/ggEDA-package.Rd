@@ -4,11 +4,11 @@
 \name{ggEDA-package}
 \alias{ggEDA}
 \alias{ggEDA-package}
-\title{ggEDA: Exploratory Data Analysis using Tiled One-Dimensional Graphics}
+\title{ggEDA: Turnkey Visualisations for Exploratory Data Analysis}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Streamlines exploratory data analysis by providing a turnkey approach to visualising n-dimensional data which graphically reveals correlative or associative relationships between 2 or more features. Represents all dataset features as distinct, vertically aligned bar or tile plots, with plot types auto-selected based on whether variables are categorical or numeric.
+Provides interactive visualisations for exploratory data analysis of high-dimensional datasets. Includes parallel coordinate plots (PCPs) for exploring large datasets with mostly quantitative features, but also stacked one-dimensional visualisations that more effectively show missingness and complex categorical relationships in smaller datasets.
 }
 \seealso{
 Useful links:

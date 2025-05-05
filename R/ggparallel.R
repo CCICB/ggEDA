@@ -250,8 +250,9 @@ ggparallel <- function(
   }
 
   # Plot Data
-  gg <- df_long |>
-    ggplot(aes(
+  gg <- ggplot(
+    data = df_long,
+    aes(
       x = .data[["Feature"]],
       y = .data[["Value"]],
       colour = if(!is.null(col_colour)) .data[[col_colour]] else NULL,
