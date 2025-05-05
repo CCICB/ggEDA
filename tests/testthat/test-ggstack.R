@@ -383,3 +383,47 @@ test_that("convert_binary_numeric_to_factor does NOT affect col_id even if it on
 })
 
 
+test_that("ggstack renders numeric columns as heatmaps", {
+  data <- data.frame(
+    ID = 1:5,
+    Score = c(10, 20, 30, 40, 50)
+  )
+
+  opts <- ggstack_options(
+    numeric_plot_type = "heatmap",
+    show_values_heatmap = TRUE,
+    show_na_marker_heatmap = TRUE
+  )
+
+  expect_no_error(
+    ggstack(
+      data = data,
+      col_id = "ID",
+      options = opts,
+      verbose = FALSE
+    )
+  )
+})
+
+test_that("ggstack heatmap handles NA values and shows labels", {
+  data <- data.frame(
+    ID = 1:4,
+    Measure = c(10, NA, 30, 40)
+  )
+
+  opts <- ggstack_options(
+    numeric_plot_type = "heatmap",
+    show_values_heatmap = TRUE,
+    show_na_marker_heatmap = TRUE,
+    na_marker = "N/A"
+  )
+
+  expect_no_error(
+    ggstack(
+      data = data,
+      col_id = "ID",
+      options = opts,
+      verbose = FALSE
+    )
+  )
+})

@@ -133,11 +133,20 @@ count_all_edge_crossings <- function(data, approximate = FALSE, subsample_prop =
   if (approximate) {
 
     # How many rows should we sample?
-    nrows_to_sample <- if (subsample_prop >= 0 && subsample_prop <= 1) {
-      round(nrow(data) * subsample_prop)
-    } else {
-      subsample_prop
-    }
+    nrows_to_sample <-
+      # If 0-1, sample that proportion of rows
+      if (subsample_prop >= 0 && subsample_prop <= 1) {
+        round(nrow(data) * subsample_prop)
+      }
+      # If subsample_prop>1 & >=number of rows in data then don't subsample at all
+      else if(subsample_prop >= nrow(data)){
+        # Dataset is too small to subsample. Computing crossings on entire dataset
+        nrow(data)
+      }
+      # If subsample_prop > 1, subsample exactly that row #
+      else {
+        subsample_prop
+      }
 
     # Sample at least 2 rows
     nrows_to_sample <- max(2, nrows_to_sample)
@@ -191,36 +200,36 @@ dist_matrix_edge_crossings <- function(data, approximate = FALSE, subsample = 0.
   distance_mx <- create_distance_matrix(df_crossings)
 }
 
-count_edge_crossings_subsample_curve <- function(x, y) {
-  max_length <- length(x)
-  props <- c(0.01, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
-  nrows <- round(props * max_length)
-  props <- nrows / max_length
-
-  compute_crossings_on_each_subset <- function() {
-    vapply(X = props, FUN = function(prop) {
-      indices <- sample(seq_along(x), size = max_length * prop, replace = FALSE)
-      count_edge_crossings(
-        x[indices],
-        y[indices]
-      )
-    }, FUN.VALUE = numeric(1))
-  }
-
-  ls_crossings_n_times <- lapply(1:9, FUN = function(i) {
-    compute_crossings_on_each_subset()
-  })
-
-  mx <- t(do.call(rbind, ls_crossings_n_times))
-  colnames(mx) <- paste0("crossings_rep", seq_len(ncol(mx)))
-  df <- as.data.frame(mx)
-  df$props <- props
-  df <- df[c("props", setdiff(colnames(df), "props"))]
-
-  return(df)
-  # df_curve <- count_edge_crossings_subsample_curve(minibeans$Area, minibeans$Perimeter)
-  # tidyr::pivot_longer(df_curve, )
-}
+# count_edge_crossings_subsample_curve <- function(x, y) {
+#   max_length <- length(x)
+#   props <- c(0.01, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+#   nrows <- round(props * max_length)
+#   props <- nrows / max_length
+#
+#   compute_crossings_on_each_subset <- function() {
+#     vapply(X = props, FUN = function(prop) {
+#       indices <- sample(seq_along(x), size = max_length * prop, replace = FALSE)
+#       count_edge_crossings(
+#         x[indices],
+#         y[indices]
+#       )
+#     }, FUN.VALUE = numeric(1))
+#   }
+#
+#   ls_crossings_n_times <- lapply(1:9, FUN = function(i) {
+#     compute_crossings_on_each_subset()
+#   })
+#
+#   mx <- t(do.call(rbind, ls_crossings_n_times))
+#   colnames(mx) <- paste0("crossings_rep", seq_len(ncol(mx)))
+#   df <- as.data.frame(mx)
+#   df$props <- props
+#   df <- df[c("props", setdiff(colnames(df), "props"))]
+#
+#   return(df)
+#   # df_curve <- count_edge_crossings_subsample_curve(minibeans$Area, minibeans$Perimeter)
+#   # tidyr::pivot_longer(df_curve, )
+# }
 
 
 #' Determine Whether Two Edges Cross

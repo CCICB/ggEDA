@@ -93,4 +93,12 @@ ggparallel(
   order_columns_by = "auto"
 )
 
+# Customise appearance using options argument
+ggparallel(
+  data = minibeans,
+  col_colour = "Class",
+  order_columns_by = "auto",
+  options = ggparallel_options(show_legend = FALSE)
+)
+
 }
