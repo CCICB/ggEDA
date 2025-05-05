@@ -1,6 +1,6 @@
 Package: ggEDA
 Title: Turnkey Visualisations for Exploratory Data Analysis
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(
       person("Sam", "El-Kamand", , "sam.elkamand@gmail.com", role = c("aut", "cre"),
