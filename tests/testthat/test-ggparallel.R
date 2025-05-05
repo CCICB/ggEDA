@@ -11,12 +11,7 @@ simple_df <- data.frame(
 test_that("ggparallel runs without error using expected inputs", {
   expect_no_error({
     ggparallel(
-      data = data.frame(
-        id = 1:5,
-        feature1 = c(1, 2, 3, 4, 5),
-        feature2 = c(2, 4, 6, 8, 10),
-        group = factor(c("A", "B", "A", "B", "A"))
-      ),
+      data = simple_df,
       col_id = "id",
       col_colour = "group",
       interactive = FALSE,
