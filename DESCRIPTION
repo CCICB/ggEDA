@@ -1,16 +1,15 @@
 Package: ggEDA
-Title: Exploratory Data Analysis using Tiled One-Dimensional Graphics
-Version: 0.0.0.9000
+Title: Turnkey Visualisations for Exploratory Data Analysis
+Version: 0.1.0
 Authors@R: 
     c(
       person("Sam", "El-Kamand", , "sam.elkamand@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-2270-8088")),
       person("Children's Cancer Institute Australia", role = c("cph"))
      )
-Description: Streamlines exploratory data analysis by providing a turnkey approach 
-  to visualising n-dimensional data which graphically reveals correlative or associative relationships 
-  between 2 or more features. Represents all dataset features as distinct, vertically 
-  aligned bar or tile plots, with plot types auto-selected based on whether variables are categorical or numeric.
+Description: Provides interactive visualisations for exploratory data analysis of high-dimensional datasets.
+  Includes parallel coordinate plots for exploring large datasets with mostly quantitative features, 
+  but also stacked one-dimensional visualisations that more effectively show missingness and complex categorical relationships in smaller datasets.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

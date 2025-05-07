@@ -28,8 +28,8 @@ features:
 - **ggstack**: tiled one-dimensional visualisations that more
   effectively show missingness and complex categorical relationships in
   smaller datasets.
-- **ggparallel**: parallel coordinate plots (PCPs) well suited for
-  examining large datasets with mostly quantitative features.
+- **ggparallel**: parallel coordinate plots (PCPs) for examining large
+  datasets with mostly quantitative features.
 
 ## Installation
 

@@ -14,7 +14,7 @@
 #' @param max_digits_bounds Number of digits to round the axis bounds label text to (number)
 #' @param line_alpha Alpha of line geom (number)
 #' @param line_width Width of the line geom (number)
-#' @param line_type Type of line geom (number or string. see [aes_linetype_size_shape()] for valid options)
+#' @param line_type Type of line geom (number or string. see [ggplot2::aes_linetype_size_shape()] for valid options)
 #' @param x_axis_gridlines Customise look of x axis gridlines. Must be either a call to [ggplot2::element_line()] or [ggplot2::element_blank()].
 #' @param x_axis_text_angle Angle of the x axis text describing column names (number)
 #' @param x_axis_text_hjust Horizontal Justification of the x axis text describing column names (number)
