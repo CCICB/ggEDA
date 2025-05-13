@@ -127,7 +127,7 @@ ggstack <- function(
     assertions::assert_no_duplicates(data[[col_id]])
   }
 
-  # Sort Order -------------------------------------------------------------------
+  # Sort Order (rows/x-axis) -------------------------------------------------------------------
   # convert ID col to factor if not already
   if (!is.factor(data[[col_id]])) {
     data[[col_id]] <- as.factor(data[[col_id]])
@@ -135,9 +135,10 @@ ggstack <- function(
 
   if (verbose) cli::cli_h3("Sorting")
 
-  if (is.null(col_sort)) {
+  if (is.null(col_sort)) { # Sort X axis by order of appearance
     if (verbose >= 1) cli::cli_alert_info("Sorting X axis by: Order of appearance")
-  } else {
+  }
+  else { # Sort X axis based on col_sort
     assertions::assert_character_vector(col_sort)
     assertions::assert_length_greater_than(col_sort, length = 0)
     assertions::assert_names_include(data, names = col_sort, msg = "Column {.code {col_sort}} does not exist in your dataset. Please set the {.arg col_sort} argument to a valid column name.")
@@ -158,17 +159,25 @@ ggstack <- function(
     order_hierarchical <- do.call(order, ranks)
     data <- data[order_hierarchical,]
     data[[col_id]] <- fct_inorder(data[[col_id]])
-
-    # Order columns based on col_sort
-    if(order_matches_sort) {
-      data <- data[,c(col_sort, setdiff(colnames(data), col_sort))]
-    }
   }
+
+  # Ordering Columns (decides order in which they're stacked). Does not affect sorting of samples
+  # Order columns based on cols_to_plot
+  if(!is.null(cols_to_plot)){
+    data <- data[,c(cols_to_plot, setdiff(colnames(data), cols_to_plot))]
+  }
+
+  # Overwrite column order based on col_sort when supplied
+  if(order_matches_sort & !is.null(col_sort)) {
+    data <- data[, c(col_sort, setdiff(colnames(data), col_sort))]
+  }
+
 
   # Autoconvert numerics with only values 0, 1, NA to logicals
   if(convert_binary_numeric_to_factor){
     data <- convert_numerics_with_only_values_0_1_and_NA_to_logicals(data, exclude = col_id)
   }
+
 
   # Identify Plottable Columns  ------------------------------------------------------------
   df_col_info <- column_info_table(
