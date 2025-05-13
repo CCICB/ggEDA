@@ -11,7 +11,9 @@
 #' @param legend_title_size Size of the legend title text (number).
 #' @param legend_text_size Size of the text within the legend (number).
 #' @param legend_key_size Size of the legend key symbols (number).
-#' @param beautify_text Beautify y-axis text and legend titles by capitalizing words and adding spaces (flag).
+#' @param beautify_text Beautify y-axis text and legend titles  to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).
+#' @param beautify_values Beautify legend values to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag)
+#' @param beautify_function a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.
 #' @param vertical_spacing Space between each data row in points (number).
 #' @param fontsize_barplot_y_numbers fontsize of the text describing numeric barplot max & min values (number).
 #' @param max_digits_barplot_y_numbers Number of digits to round the numeric barplot max and min values to (number).
@@ -79,7 +81,10 @@ ggstack_options <- function(
     fontsize_barplot_y_numbers = 8,
     max_digits_barplot_y_numbers = 3,
     fontsize_y_title = 12,
-    beautify_text = TRUE) {
+    beautify_text = TRUE,
+    beautify_values = FALSE,
+    beautify_function = beautify
+    ) {
   # Legend-related
   assertions::assert_flag(show_legend)
   assertions::assert_flag(show_legend_titles)
@@ -108,6 +113,8 @@ ggstack_options <- function(
 
   # Text and layout
   assertions::assert_flag(beautify_text)
+  assertions::assert_flag(beautify_values)
+  assertions::assert_function(beautify_function)
   assertions::assert_number(vertical_spacing)
   assertions::assert_number(fontsize_values_heatmap)
   assertions::assert_number(relative_height_numeric)
@@ -144,6 +151,8 @@ ggstack_options <- function(
     legend_key_size = legend_key_size,
     legend_orientation_heatmap = legend_orientation_heatmap,
     beautify_text = beautify_text,
+    beautify_values = beautify_values,
+    beautify_function = beautify_function,
     vertical_spacing = vertical_spacing,
     fontsize_barplot_y_numbers = fontsize_barplot_y_numbers,
     max_digits_barplot_y_numbers = max_digits_barplot_y_numbers,
