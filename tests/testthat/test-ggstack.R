@@ -214,6 +214,45 @@ test_that("ggEDA heirarchical sort works", {
 })
 
 
+test_that("ggEDA column reorder works", {
+  data <- data.frame(a=LETTERS[1:5], b=LETTERS[6:10], c=LETTERS[11:15])
+
+
+  # By default column order should not change
+  expect_named(
+    ggstack(data = data, interactive = FALSE, return = "data", verbose = FALSE)[1:3],
+    expected = c("a", "b", "c")
+  )
+
+  # When cols_to_plot is supplied, reorder columns to match the supplied vector
+  expect_named(
+    ggstack(data = data, cols_to_plot = c("c", "b"), interactive = FALSE, return = "data", verbose = FALSE)[1:3],
+    expected = c("c", "b", "a")
+  )
+
+
+  # When cols_to_plot & col_sort is supplied, first order by cols_to_plot, then reorder by col_sort
+  expect_named(
+    ggstack(
+      data = data, cols_to_plot = c("c", "b", "a"),
+      interactive = FALSE, col_sort = "b", order_matches_sort = TRUE,
+      return = "data", verbose = FALSE
+    )[1:3],
+    expected = c("b", "c", "a")
+  )
+
+  # When cols_to_plot & col_sort is supplied but order_matches_sort=FALSE, order cols based on cols_to_plot alone
+  expect_named(
+    ggstack(
+      data = data, cols_to_plot = c("c", "b", "a"),
+      interactive = FALSE, col_sort = "b", order_matches_sort = FALSE,
+      return = "data", verbose = FALSE
+    )[1:3],
+    expected = c("c", "b", "a")
+  )
+
+})
+
 test_that("convert_binary_numeric_to_factor converts numeric columns with only 0, 1, and NA to factors", {
   # Input data with a numeric column containing 0, 1, and NA
   data <- data.frame(

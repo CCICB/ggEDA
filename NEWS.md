@@ -1,5 +1,7 @@
 # ggEDA (development version)
 
+* `cols_to_plot` now dictates order of stacking unless `col_sort` argument is supplied and `order_matches_sort=TRUE`.
+
 * Added `beautify_values` and `beautify_function` argument to `ggparallel_options()`
 to provide more control over what text is beautified (made more human readable), and how it is reformatted. 
 
