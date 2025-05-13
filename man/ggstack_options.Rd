@@ -41,7 +41,9 @@ ggstack_options(
   fontsize_barplot_y_numbers = 8,
   max_digits_barplot_y_numbers = 3,
   fontsize_y_title = 12,
-  beautify_text = TRUE
+  beautify_text = TRUE,
+  beautify_values = FALSE,
+  beautify_function = beautify
 )
 }
 \arguments{
@@ -113,7 +115,11 @@ ggstack_options(
 
 \item{fontsize_y_title}{fontsize of the y axis titles (a.k.a the data.frame column names) (number).}
 
-\item{beautify_text}{Beautify y-axis text and legend titles by capitalizing words and adding spaces (flag).}
+\item{beautify_text}{Beautify y-axis text and legend titles  to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).}
+
+\item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)}
+
+\item{beautify_function}{a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.}
 }
 \value{
 A list of visualization parameters for \code{ggstack}.

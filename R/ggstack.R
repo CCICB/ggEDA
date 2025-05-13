@@ -309,7 +309,7 @@ ggstack <- function(
           ggplot2::scale_x_discrete(drop = drop_unused_id_levels) +
           ggplot2::guides(fill = ggplot2::guide_legend(
             title.position = options$legend_title_position,
-            title = if (options$beautify_text) beautify(colname) else colname,
+            title = if (options$beautify_text) options$beautify_function(colname) else colname,
             nrow = min(ndistinct_including_na, options$legend_nrow),
             ncol = min(ndistinct_including_na, options$legend_ncol),
           )) +
@@ -323,8 +323,12 @@ ggstack <- function(
             vertical_spacing = options$vertical_spacing,
             fontsize_y_title = options$fontsize_y_title
           ) +
-          ggplot2::ylab(if (options$beautify_text) beautify(colname) else colname) +
-          ggplot2::scale_fill_manual(values = palette, na.value = options$colours_missing) +
+          ggplot2::ylab(if (options$beautify_text) options$beautify_function(colname) else colname) +
+          ggplot2::scale_fill_manual(
+            values = palette,
+            na.value = options$colours_missing,
+            labels = if(options$beautify_values) options$beautify_function else ggplot2::waiver()
+          ) +
           ggplot2::scale_y_discrete(position = options$y_axis_position)
         # if(colname == "sex") browser()
       }

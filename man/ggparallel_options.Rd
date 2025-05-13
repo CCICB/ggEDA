@@ -13,6 +13,8 @@ ggparallel_options(
   legend_ncol = NULL,
   legend_key_size = 1,
   beautify_text = TRUE,
+  beautify_values = FALSE,
+  beautify_function = beautify,
   max_digits_bounds = 1,
   x_axis_text_angle = 90,
   x_axis_text_hjust = 0,
@@ -45,7 +47,11 @@ ggparallel_options(
 
 \item{legend_key_size}{Size of the legend key symbols. (number).}
 
-\item{beautify_text}{Beautify y-axis text and legend titles by capitalizing words and adding spaces (flag).}
+\item{beautify_text}{Beautify y-axis text and legend titlesto more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).}
+
+\item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)}
+
+\item{beautify_function}{a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.}
 
 \item{max_digits_bounds}{Number of digits to round the axis bounds label text to (number)}
 
