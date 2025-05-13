@@ -229,7 +229,7 @@ ggparallel <- function(
   # Set up guide
   gl <- ggplot2::guide_legend(
     title.position = options$legend_title_position,
-    title = col_colour,
+    title = if(options$beautify_text)  options$beautify_function(col_colour) else col_colour,
     nrow = options$legend_nrow,
     ncol = options$legend_ncol
   )
@@ -309,7 +309,10 @@ ggparallel <- function(
     gg <- gg + geom_point(
       alpha = 1
     ) +
-      ggplot2::scale_fill_manual(values = palette_colour)
+      ggplot2::scale_fill_manual(
+        values = palette_colour,
+        labels = if(options$beautify_values) options$beautify_function else ggplot2::waiver()
+      )
 
   }
 
@@ -319,12 +322,13 @@ ggparallel <- function(
     fill = gl
     ) +
     xlab(NULL) +
-    ggplot2::scale_colour_manual(values = palette_colour) +
+    ggplot2::scale_colour_manual(
+      values = palette_colour,
+      labels = if(options$beautify_values) options$beautify_function else ggplot2::waiver()
+      ) +
     ggplot2::scale_x_discrete(
       position = "top",
-      labels = function(labels){
-        if (options$beautify_text) beautify(labels) else labels
-      }
+      labels = if(options$beautify_text) options$beautify_function else ggplot2::waiver()
     ) +
     ggplot2::scale_y_continuous(expand = c(0.2, 0)) +
     ggplot2::theme_minimal() +

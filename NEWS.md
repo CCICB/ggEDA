@@ -1,5 +1,8 @@
 # ggEDA (development version)
 
+* Added `beautify_values` and `beautify_function` argument to `ggparallel_options()`
+to provide more control over what text is beautified (made more human readable), and how it is reformatted. 
+
 * Added `beautify_values` and `beautify_function` argument to `ggstack_options()`
 to provide more control over what text is beautified (made more human readable), and how it is reformatted. 
 

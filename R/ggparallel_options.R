@@ -9,7 +9,9 @@
 #' @param legend_nrow Number of rows in the legend (number).
 #' @param legend_ncol Number of columns in the legend. If set, `legend_nrow` should be `NULL` (number).
 #' @param legend_key_size Size of the legend key symbols. (number).
-#' @param beautify_text Beautify y-axis text and legend titles by capitalizing words and adding spaces (flag).
+#' @param beautify_text Beautify y-axis text and legend titlesto more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).
+#' @param beautify_values Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)
+#' @param beautify_function a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.
 #' @param fontsize_x_axis_text fontsize of the x-axis text describing column names (number)
 #' @param max_digits_bounds Number of digits to round the axis bounds label text to (number)
 #' @param line_alpha Alpha of line geom (number)
@@ -40,6 +42,8 @@ ggparallel_options <- function(
 
   # Text
   beautify_text = TRUE,
+  beautify_values = FALSE,
+  beautify_function = beautify,
   max_digits_bounds = 1,
   x_axis_text_angle = 90,
   x_axis_text_hjust = 0,
@@ -78,6 +82,8 @@ ggparallel_options <- function(
 
   # Text-related validation
   assertions::assert_flag(beautify_text)
+  assertions::assert_flag(beautify_values)
+  assertions::assert_function(beautify_function)
   assertions::assert_number(max_digits_bounds)
   assertions::assert_number(x_axis_text_angle)
   assertions::assert_number(x_axis_text_hjust)
@@ -123,6 +129,8 @@ ggparallel_options <- function(
     legend_ncol = legend_ncol,
     legend_key_size = legend_key_size,
     beautify_text = beautify_text,
+    beautify_values = beautify_values,
+    beautify_function = beautify_function,
     max_digits_bounds = max_digits_bounds,
     x_axis_text_angle = x_axis_text_angle,
     x_axis_text_hjust = x_axis_text_hjust,
