@@ -117,7 +117,7 @@ ggstack_options(
 
 \item{beautify_text}{Beautify y-axis text and legend titles  to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).}
 
-\item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag)}
+\item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)}
 
 \item{beautify_function}{a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.}
 }

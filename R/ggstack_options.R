@@ -12,7 +12,7 @@
 #' @param legend_text_size Size of the text within the legend (number).
 #' @param legend_key_size Size of the legend key symbols (number).
 #' @param beautify_text Beautify y-axis text and legend titles  to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).
-#' @param beautify_values Beautify legend values to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag)
+#' @param beautify_values Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)
 #' @param beautify_function a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.
 #' @param vertical_spacing Space between each data row in points (number).
 #' @param fontsize_barplot_y_numbers fontsize of the text describing numeric barplot max & min values (number).
