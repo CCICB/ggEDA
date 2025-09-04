@@ -1,5 +1,7 @@
 # ggEDA (development version)
 
+* `line_width` of ggparallel now defaults to 0.5
+
 * `cols_to_plot` now dictates order of stacking unless `col_sort` argument is supplied and `order_matches_sort=TRUE`.
 
 * Added `beautify_values` and `beautify_function` argument to `ggparallel_options()`

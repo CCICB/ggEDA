@@ -25,7 +25,7 @@ ggparallel_options(
   show_bounds_labels = FALSE,
   show_bounds_rect = FALSE,
   line_alpha = 0.5,
-  line_width = NULL,
+  line_width = 0.5,
   line_type = 1,
   x_axis_gridlines = ggplot2::element_line(colour = "black"),
   interactive_svg_width = NULL,
