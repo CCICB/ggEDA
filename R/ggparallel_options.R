@@ -58,7 +58,7 @@ ggparallel_options <- function(
 
   # Line
   line_alpha = 0.5,
-  line_width = NULL,
+  line_width = 0.5,
   line_type = 1,
 
   # Gridlines
