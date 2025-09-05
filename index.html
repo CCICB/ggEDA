@@ -70,6 +70,7 @@
 <li>
 <strong>ggparallel</strong>: parallel coordinate plots (PCPs) for examining large datasets with mostly quantitative features.</li>
 </ul>
+<p>To create ggEDA visualisations through a shiny app see <a href="https://github.com/CCICB/interactiveEDA" class="external-link">interactiveEDA</a></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -129,10 +130,32 @@
 <p><img src="reference/figures/README-customise_colours-1.png" width="100%"></p>
 </div>
 <div class="section level2">
+<h2 id="a-note-on-missing-and-infinite-values">A note on missing and infinite values<a class="anchor" aria-label="anchor" href="#a-note-on-missing-and-infinite-values"></a>
+</h2>
+<p>Infinite values in numeric colums are indicated with directional (↓ &amp; ↑) arrows to differentiate them from missing (NA) values which are represented by <code>!</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="cn">Inf</span>, <span class="op">-</span><span class="cn">Inf</span>, <span class="cn">NA</span><span class="op">)</span>, </span>
+<span>  letters <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/ggstack.html">ggstack</a></span><span class="op">(</span><span class="va">data</span>, interactive <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
+<p>If rendering numeric columns as heatmaps, infinite values are clamped to the min/max colours, while na values remain grey. We can optionally add markers by setting <code>show_na_marker_heatmap = TRUE</code></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/ggstack.html">ggstack</a></span><span class="op">(</span></span>
+<span>  <span class="va">data</span>, </span>
+<span>  interactive <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="reference/ggstack_options.html">ggstack_options</a></span><span class="op">(</span>numeric_plot_type <span class="op">=</span> <span class="st">"heatmap"</span>, show_na_marker_heatmap <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+</div>
+<div class="section level2">
 <h2 id="parallel-coordinate-plots">Parallel Coordinate Plots<a class="anchor" aria-label="anchor" href="#parallel-coordinate-plots"></a>
 </h2>
 <p>For datasets with many observations and mostly numeric features, parallel coordinate plots may be more appropriate.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/ggparallel.html">ggparallel</a></span><span class="op">(</span></span>
 <span> data <span class="op">=</span> <span class="va">minibeans</span>,</span>
 <span> col_colour <span class="op">=</span> <span class="st">"Class"</span>,</span>
@@ -141,7 +164,7 @@
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Ordering columns based on mutual information with [Class]</span></span></code></pre></div>
 <p><img src="reference/figures/README-minibeans_class-1.png" width="100%"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu"><a href="reference/ggparallel.html">ggparallel</a></span><span class="op">(</span></span>
 <span>   data <span class="op">=</span> <span class="va">minibeans</span>,</span>
 <span>   col_colour <span class="op">=</span> <span class="st">"Class"</span>,</span>
@@ -151,7 +174,7 @@
 <span> <span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Ordering columns based on how well they differentiate 1 group from the rest [DERMASON] (based on mutual information)</span></span></code></pre></div>
 <p><img src="reference/figures/README-minibeans_highlight-1.png" width="100%"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu"><a href="reference/ggparallel.html">ggparallel</a></span><span class="op">(</span></span>
 <span>   data <span class="op">=</span> <span class="va">minibeans</span>,</span>
 <span>   order_columns_by <span class="op">=</span> <span class="st">"auto"</span>,</span>
