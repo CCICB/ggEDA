@@ -31,6 +31,9 @@ features:
 - **ggparallel**: parallel coordinate plots (PCPs) for examining large
   datasets with mostly quantitative features.
 
+To create ggEDA visualisations through a shiny app see
+[interactiveEDA](https://github.com/CCICB/interactiveEDA)
+
 ## Installation
 
 ``` r
