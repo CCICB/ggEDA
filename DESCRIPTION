@@ -25,7 +25,8 @@ Imports:
     grDevices,
     patchwork (>= 1.3.0),
     rank (>= 0.1.1),
-    rlang
+    rlang,
+    scales
 Suggests: 
     covr,
     infotheo,

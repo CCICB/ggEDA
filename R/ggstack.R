@@ -293,7 +293,6 @@ ggstack <- function(
       )
 
       # Draw the actual plot
-
       ## Categorical -------------------------------------------------------------
       if (coltype == "categorical") {
         gg <- ggplot(
@@ -339,7 +338,6 @@ ggstack <- function(
             labels = if(options$beautify_values) options$beautify_function else ggplot2::waiver()
           ) +
           ggplot2::scale_y_discrete(position = options$y_axis_position)
-        # if(colname == "sex") browser()
       }
       # Numeric Bar -------------------------------------------------------------------------
       else if (coltype == "numeric" && options$numeric_plot_type == "bar") {
@@ -350,17 +348,35 @@ ggstack <- function(
           fontsize_y_title = options$fontsize_y_title,
           digits = options$max_digits_barplot_y_numbers
         )
-
         gg <- ggplot2::ggplot(data, aes(x = .data[[col_id]], y = .data[[colname]])) +
-          ggiraph::geom_col_interactive(mapping = aes_interactive, width = options$width, na.rm = TRUE) +
+          ggiraph::geom_col_interactive(
+
+            # Replace Inf with NA (avoids plotting bars for inf values since we later set na.rm = TRUE)
+            data = function(x){
+              x[is.infinite(x[[colname]]), colname] <- NA
+              return(x)
+              },
+            mapping = aes_interactive, width = options$width, na.rm = TRUE
+            ) +
+          # Add '!' to indicate missing data
           ggplot2::geom_text(
             data = function(x) {
               x[is.na(x[[colname]]), , drop = FALSE]
             }, # only add text where value is NA
-            aes(label = options$na_marker, y = 0), size = options$na_marker_size, na.rm = TRUE, vjust = 0, color = options$na_marker_colour
+            aes(label = options$na_marker, y = 0), size = options$na_marker_size, na.rm = TRUE, vjust = -0.5, color = options$na_marker_colour
+          ) +
+          # Add '↑' or to indicate positive infinite values
+          ggplot2::geom_text(
+            data = function(x) {
+              x[is.infinite(x[[colname]]), , drop = FALSE]
+            }, # only add text where value is NA
+            aes(label = ifelse(.data[[colname]] > 0, '\u2191', "\u2193"), y = 0),
+            size = options$na_marker_size,
+            na.rm = TRUE,
+            vjust = -0.5,
+            color = options$na_marker_colour
           ) +
           ggplot2::scale_x_discrete(drop = drop_unused_id_levels) +
-          # ggplot2::geom_hline(yintercept = breaks[c(1, 3)]) +
           ggplot2::scale_y_continuous(
             breaks = breaks,
             labels = labels,
@@ -383,11 +399,25 @@ ggstack <- function(
           ggplot2::scale_y_discrete(position = options$y_axis_position) +
           {
             if (options$show_na_marker_heatmap) {
+              # Add NA marker
               ggplot2::geom_text(
                 data = function(x) {
                   x[is.na(x[[colname]]), , drop = FALSE]
                 }, # only add text where value is NA
                 aes(label = options$na_marker), size = options$na_marker_size, na.rm = TRUE, vjust = 0.5
+              )
+            }
+          } +
+
+          # Add Up / Down arrow for infinite values (only if options$show_na_marker_heatmap)
+          {
+            if (options$show_na_marker_heatmap) {
+              ggplot2::geom_text(
+                data = function(x) {
+                  x[is.infinite(x[[colname]]), , drop = FALSE]
+                }, # only add text where value is NA
+                aes(label = ifelse(.data[[colname]] > 0, "\u2191",  "\u2193")),
+                size = options$na_marker_size, na.rm = TRUE, vjust = 0.5
               )
             }
           } +
@@ -415,6 +445,7 @@ ggstack <- function(
             high = options$colours_heatmap_high,
             na.value = options$colours_missing,
             trans = options$transform_heatmap,
+            oob = scales::squish_infinite,
             guide = ggplot2::guide_colorbar(
               direction = if (options$legend_orientation_heatmap == "horizontal") "horizontal" else "vertical",
               title.position = "top",
@@ -712,6 +743,7 @@ sensible_2_breaks <- function(vector) {
 }
 
 sensible_3_breaks <- function(vector, digits = 3) {
+  vector <- vector[!is.infinite(vector)]
   upper <- max(vector, na.rm = TRUE)
   lower <- min(0, min(vector, na.rm = TRUE), na.rm = TRUE)
 
@@ -731,6 +763,7 @@ sensible_3_breaks <- function(vector, digits = 3) {
 }
 
 sensible_3_labels <- function(vector, axis_label, fontsize_y_title = 14, digits = 3) {
+  vector <- vector[!is.infinite(vector)]
   upper <- max(vector, na.rm = TRUE)
   lower <- min(0, min(vector, na.rm = TRUE), na.rm = TRUE)
 
@@ -828,3 +861,13 @@ as_binary_factor <- function(vec){
   levels(vec) <- c(0, 1, NA)
   return(vec)
 }
+
+is.positive.infinity <- function(x){
+  is.infinite(x) & x > 0
+}
+
+is.negative.infinity <- function(x){
+  is.infinite(x) & x < 0
+}
+
+
