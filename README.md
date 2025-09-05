@@ -31,6 +31,9 @@ features:
 - **ggparallel**: parallel coordinate plots (PCPs) for examining large
   datasets with mostly quantitative features.
 
+To create ggEDA visualisations through a shiny app see
+[interactiveEDA](https://github.com/CCICB/interactiveEDA)
+
 ## Installation
 
 ``` r
@@ -98,6 +101,38 @@ ggstack(
 ```
 
 <img src="man/figures/README-customise_colours-1.png" width="100%" />
+
+## A note on missing and infinite values
+
+Infinite values in numeric colums are indicated with directional (↓ & ↑)
+arrows to differentiate them from missing (NA) values which are
+represented by `!`.
+
+``` r
+data <- data.frame(
+  numbers = c(1:3, Inf, -Inf, NA), 
+  letters = LETTERS[1:6]
+)
+
+ggstack(data, interactive = FALSE, verbose = FALSE)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+If rendering numeric columns as heatmaps, infinite values are clamped to
+the min/max colours, while na values remain grey. We can optionally add
+markers by setting `show_na_marker_heatmap = TRUE`
+
+``` r
+ggstack(
+  data, 
+  interactive = FALSE, 
+  verbose = FALSE,
+  options = ggstack_options(numeric_plot_type = "heatmap", show_na_marker_heatmap = TRUE)
+)
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ## Parallel Coordinate Plots
 

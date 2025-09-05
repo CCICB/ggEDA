@@ -29,7 +29,7 @@
 #' @param colours_heatmap_low Color for the lowest value in heatmaps (string).
 #' @param colours_heatmap_high Color for the highest value in heatmaps (string).
 #' @param transform_heatmap Transformation to apply before visualizing heatmap values ("identity", "log10", "log2").
-#' @param show_na_marker_categorical Show a marker for `NA` values on categorical tiles (flag).
+#' @param show_na_marker_categorical Show a marker for `NA` and `Infinite` values on categorical tiles (flag).
 #' @param show_na_marker_heatmap Show a marker for `NA` values on heatmap tiles (flag).
 #' @param show_values_heatmap Display numerical values on heatmap tiles (flag).
 #' @param fontsize_values_heatmap Font size for heatmap values (number).

@@ -79,7 +79,7 @@ ggstack_options(
 
 \item{na_marker_colour}{Color of the \code{NA} text marker (string).}
 
-\item{show_na_marker_categorical}{Show a marker for \code{NA} values on categorical tiles (flag).}
+\item{show_na_marker_categorical}{Show a marker for \code{NA} and \code{Infinite} values on categorical tiles (flag).}
 
 \item{show_na_marker_heatmap}{Show a marker for \code{NA} values on heatmap tiles (flag).}
 
