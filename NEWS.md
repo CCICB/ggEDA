@@ -1,3 +1,5 @@
+# ggEDA (development version)
+
 # ggEDA 0.2.0
 
 * **Improved handling of infinite values:** Infinite values are now shown in bar plots as vertical arrows (up/down depending on whether positive or negative). 
