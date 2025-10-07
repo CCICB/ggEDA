@@ -324,6 +324,7 @@ ggstack <- function(
           theme_categorical(
             show_legend_titles = options$show_legend_titles,
             show_legend = options$show_legend,
+            fontface_y_title = options$fontface_y_title,
             legend_position = options$legend_position,
             legend_title_size = options$legend_title_size,
             legend_text_size = options$legend_text_size,
@@ -346,6 +347,7 @@ ggstack <- function(
           data[[colname]],
           axis_label = if (options$beautify_text) beautify(colname) else colname,
           fontsize_y_title = options$fontsize_y_title,
+          fontface_y_title = options$fontface_y_title,
           digits = options$max_digits_barplot_y_numbers
         )
         gg <- ggplot2::ggplot(data, aes(x = .data[[col_id]], y = .data[[colname]])) +
@@ -432,6 +434,7 @@ ggstack <- function(
           ggplot2::ylab(colname_formatted) +
           theme_numeric_heatmap(
             show_legend_titles = options$show_legend_titles,
+            fontface_y_title = options$fontface_y_title,
             show_legend = options$show_legend,
             legend_position = options$legend_position,
             legend_title_size = options$legend_title_size,
@@ -657,7 +660,7 @@ choose_colours <- function(data, palettes, plottable, ndistinct, coltype, colour
 
 
 
-theme_categorical <- function(fontsize_y_title = 12, show_legend = TRUE, show_legend_titles = FALSE, legend_position = "right", legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
+theme_categorical <- function(fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, show_legend_titles = FALSE, legend_position = "right", legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
   ggplot2::theme_minimal() %+replace%
 
     ggplot2::theme(
@@ -666,8 +669,8 @@ theme_categorical <- function(fontsize_y_title = 12, show_legend = TRUE, show_le
       axis.text.y.right = element_blank(),
       axis.text.x = element_blank(),
       axis.title.x = element_blank(),
-      axis.title.y = element_text(size = fontsize_y_title, angle = 0),
-      axis.title.y.right = element_text(size = fontsize_y_title, angle = 0),
+      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0),
+      axis.title.y.right = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0),
       legend.title = if (show_legend_titles) element_text(size = legend_title_size, face = "bold", hjust = 0) else element_blank(),
       legend.justification = c(0, 0.5),
       legend.margin = ggplot2::margin(0, 0, 0, 0),
@@ -705,12 +708,12 @@ theme_numeric_bar <- function(vertical_spacing = 0, fontsize_barplot_y_numbers =
     )
 }
 
-theme_numeric_heatmap <- function(fontsize_y_title = 12, show_legend = TRUE, legend_position = "right", show_legend_titles = FALSE, legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
+theme_numeric_heatmap <- function(fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, legend_position = "right", show_legend_titles = FALSE, legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
   ggplot2::theme_minimal() %+replace%
     theme(
       panel.grid = element_blank(),
       axis.text.y = element_blank(),
-      axis.title.y = element_text(size = fontsize_y_title, angle = 0, colour = "black"),
+      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0, colour = "black"),
       axis.text.x = element_blank(),
       axis.title.x = element_blank(),
       legend.title = if (show_legend_titles) element_text(size = legend_title_size, face = "bold", hjust = 0) else element_blank(),
@@ -762,24 +765,43 @@ sensible_3_breaks <- function(vector, digits = 3) {
   return(breaks)
 }
 
-sensible_3_labels <- function(vector, axis_label, fontsize_y_title = 14, digits = 3) {
+sensible_3_labels <- function(vector, axis_label,
+                              fontsize_y_title = 14,
+                              fontface_y_title = c("plain","italic","bold","bold.italic"),
+                              digits = 3) {
+  fontface_y_title <- match.arg(fontface_y_title)
+
   vector <- vector[!is.infinite(vector)]
   upper <- max(vector, na.rm = TRUE)
   lower <- min(0, min(vector, na.rm = TRUE), na.rm = TRUE)
 
-
-  # Round
-  if (!is.null(digits)) upper <- round_up(upper, digits)
-  if (!is.null(digits)) lower <- round_down(lower, digits)
-
-  axis_label <- paste0("<span style = 'font-size: ", fontsize_y_title, "pt'>", axis_label, "</span>")
-
-  if (lower == upper) {
-    return(axis_label)
+  if (!is.null(digits)) {
+    upper <- round_up(upper, digits)
+    lower <- round_down(lower, digits)
   }
 
-  as.character(c(upper, axis_label, lower))
+  # Build the span *only* for font size
+  span_label <- paste0(
+    "<span style='font-size: ", fontsize_y_title, "pt'>",
+    axis_label,
+    "</span>"
+  )
+
+  # Wrap span in <b> / <i> as needed
+  wrapped_label <- switch(fontface_y_title,
+                          plain        = span_label,
+                          italic       = paste0("<i>", span_label, "</i>"),
+                          bold         = paste0("<b>", span_label, "</b>"),
+                          bold.italic  = paste0("<b><i>", span_label, "</i></b>")
+  )
+
+  if (lower == upper) {
+    return(wrapped_label)
+  }
+
+  as.character(c(upper, wrapped_label, lower))
 }
+
 
 
 #' Make strings prettier for printing
