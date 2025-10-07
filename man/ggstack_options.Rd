@@ -41,6 +41,7 @@ ggstack_options(
   fontsize_barplot_y_numbers = 8,
   max_digits_barplot_y_numbers = 3,
   fontsize_y_title = 12,
+  fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
   beautify_text = TRUE,
   beautify_values = FALSE,
   beautify_function = beautify
@@ -113,7 +114,9 @@ ggstack_options(
 
 \item{max_digits_barplot_y_numbers}{Number of digits to round the numeric barplot max and min values to (number).}
 
-\item{fontsize_y_title}{fontsize of the y axis titles (a.k.a the data.frame column names) (number).}
+\item{fontsize_y_title}{Font size of the y axis titles (a.k.a the data.frame column names) (number).}
+
+\item{fontface_y_title}{Font face of the y axis titles (a.k.a the data.frame column names). One of "plain", "italic", "bold", "bold.italic".}
 
 \item{beautify_text}{Beautify y-axis text and legend titles  to more human-readable forms (e.g. converting 'my_title' to 'My Title') (flag).}
 

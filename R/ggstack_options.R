@@ -17,7 +17,8 @@
 #' @param vertical_spacing Space between each data row in points (number).
 #' @param fontsize_barplot_y_numbers fontsize of the text describing numeric barplot max & min values (number).
 #' @param max_digits_barplot_y_numbers Number of digits to round the numeric barplot max and min values to (number).
-#' @param fontsize_y_title fontsize of the y axis titles (a.k.a the data.frame column names) (number).
+#' @param fontsize_y_title Font size of the y axis titles (a.k.a the data.frame column names) (number).
+#' @param fontface_y_title Font face of the y axis titles (a.k.a the data.frame column names). One of "plain", "italic", "bold", "bold.italic".
 #' @param y_axis_position Position of the y-axis ("left" or "right").
 #' @param numeric_plot_type Type of visualization for numeric data: "bar" or "heatmap".
 #' @param colours_default Default colors for categorical variables without a custom palette.
@@ -81,6 +82,7 @@ ggstack_options <- function(
     fontsize_barplot_y_numbers = 8,
     max_digits_barplot_y_numbers = 3,
     fontsize_y_title = 12,
+    fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
     beautify_text = TRUE,
     beautify_values = FALSE,
     beautify_function = beautify
@@ -126,6 +128,7 @@ ggstack_options <- function(
   numeric_plot_type <- rlang::arg_match(numeric_plot_type)
   legend_orientation_heatmap <- rlang::arg_match(legend_orientation_heatmap)
   transform_heatmap <- rlang::arg_match(transform_heatmap)
+  fontface_y_title <- rlang::arg_match(fontface_y_title)
 
   # Interactive
   if (!is.null(interactive_svg_width)) {
@@ -157,6 +160,7 @@ ggstack_options <- function(
     fontsize_barplot_y_numbers = fontsize_barplot_y_numbers,
     max_digits_barplot_y_numbers = max_digits_barplot_y_numbers,
     fontsize_y_title = fontsize_y_title,
+    fontface_y_title = fontface_y_title,
     y_axis_position = y_axis_position,
     numeric_plot_type = numeric_plot_type,
     colours_default = colours_default,
