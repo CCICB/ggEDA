@@ -1,0 +1,165 @@
+# ggEDA
+
+**ggEDA** streamlines exploratory data analysis by providing turnkey
+approaches to visualising n-dimensional data which can graphically
+reveal correlative or associative relationships between two or more
+features:
+
+- **ggstack**: tiled one-dimensional visualisations that more
+  effectively show missingness and complex categorical relationships in
+  smaller datasets.
+- **ggparallel**: parallel coordinate plots (PCPs) for examining large
+  datasets with mostly quantitative features.
+
+To create ggEDA visualisations through a shiny app see
+[interactiveEDA](https://github.com/CCICB/interactiveEDA)
+
+## Installation
+
+``` r
+install.packages("ggEDA")
+```
+
+### Development Version
+
+You can install the development version of ggEDA from
+[GitHub](https://github.com/CCICB/ggEDA) with:
+
+``` r
+if (!require("remotes"))
+    install.packages("remotes")
+
+remotes::install_github("CCICB/ggEDA")
+```
+
+Or from R-universe with:
+
+``` r
+install.packages("ggEDA", repos = "https://ropensci.r-universe.dev")
+```
+
+## Quick Start
+
+For examples of interactive EDA plots see the [ggEDA
+gallery](https://CCICB.github.io/ggEDA/articles/gallery.html)
+
+``` r
+# Load library
+library(ggEDA)
+
+# Plot data, sort by Glasses
+ggstack(
+  baseballfans,
+  col_id = "ID",
+  col_sort = "Glasses",
+  interactive = FALSE,
+  verbose = FALSE,
+  options = ggstack_options(legend_nrow = 2)
+)
+```
+
+![](reference/figures/README-example-1.png)
+
+## Customise Colours
+
+Customise colours by supplying a named list to the `palettes` argument
+
+``` r
+ggstack(
+  baseballfans,
+  col_id = "ID",
+  col_sort = "Glasses",
+  palettes = list("EyeColour" = c(
+    Brown = "rosybrown4",
+    Blue = "steelblue",
+    Green = "seagreen"
+  )),
+  interactive = FALSE,
+  verbose = FALSE,
+  options = ggstack_options(legend_nrow = 2)
+)
+```
+
+![](reference/figures/README-customise_colours-1.png)
+
+## A note on missing and infinite values
+
+Infinite values in numeric colums are indicated with directional (↓ & ↑)
+arrows to differentiate them from missing (NA) values which are
+represented by `!`.
+
+``` r
+data <- data.frame(
+  numbers = c(1:3, Inf, -Inf, NA), 
+  letters = LETTERS[1:6]
+)
+
+ggstack(data, interactive = FALSE, verbose = FALSE)
+```
+
+![](reference/figures/README-unnamed-chunk-2-1.png)
+
+If rendering numeric columns as heatmaps, infinite values are clamped to
+the min/max colours, while na values remain grey. We can optionally add
+markers by setting `show_na_marker_heatmap = TRUE`
+
+``` r
+ggstack(
+  data, 
+  interactive = FALSE, 
+  verbose = FALSE,
+  options = ggstack_options(numeric_plot_type = "heatmap", show_na_marker_heatmap = TRUE)
+)
+```
+
+![](reference/figures/README-unnamed-chunk-3-1.png)
+
+## Parallel Coordinate Plots
+
+For datasets with many observations and mostly numeric features,
+parallel coordinate plots may be more appropriate.
+
+``` r
+ggparallel(
+ data = minibeans,
+ col_colour = "Class",
+ order_columns_by = "auto",
+ interactive = FALSE
+)
+#> ℹ Ordering columns based on mutual information with [Class]
+```
+
+![](reference/figures/README-minibeans_class-1.png)
+
+``` r
+ ggparallel(
+   data = minibeans,
+   col_colour = "Class",
+   highlight = "DERMASON",
+   order_columns_by = "auto",
+   interactive = FALSE
+ )
+#> ℹ Ordering columns based on how well they differentiate 1 group from the rest [DERMASON] (based on mutual information)
+```
+
+![](reference/figures/README-minibeans_highlight-1.png)
+
+``` r
+ ggparallel(
+   data = minibeans,
+   order_columns_by = "auto",
+   interactive = FALSE
+ )
+#> ℹ To add colour to plot set `col_colour` to one of: Class
+#> ℹ Ordering columns to minimise crossings
+#> ℹ Choosing axis order via repetitive nearest neighbour with two-opt refinement
+```
+
+![](reference/figures/README-minibeans_noclass-1.png)
+
+## Community Contributions
+
+All types of contributions are encouraged and valued. See our [guide to
+community
+contributions](https://CCICB.github.io/ggEDA/CONTRIBUTING.html) for
+different ways to help.

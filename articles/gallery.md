@@ -1,0 +1,160 @@
+# Gallery
+
+``` r
+library(ggEDA)
+library(datarium)
+library(palmerpenguins)
+#> 
+#> Attaching package: 'palmerpenguins'
+#> The following objects are masked from 'package:datasets':
+#> 
+#>     penguins, penguins_raw
+```
+
+## Examples with real datasets
+
+### Chicken Weights by Feed
+
+Horsebean feed consistently produces the lowest chicken weights.
+
+``` r
+ggstack(
+  chickwts,
+  col_sort = "weight",
+  options = ggstack_options(
+    show_legend = TRUE,
+    legend_position = "bottom",
+    legend_nrow = 1,
+    legend_text_size = 18
+  )
+)
+```
+
+### Iris
+
+The setosa species have drastically smaller petals then other iris
+species.
+
+``` r
+ggstack(
+  iris,
+  options = ggstack_options(show_legend = TRUE)
+)
+```
+
+### Titanic Survival by Class
+
+Most deaths in the titanic were male adults.
+
+``` r
+ggstack(
+  titanic.raw,
+  palettes = list(
+    Sex = c(Male = "#0072B2", Female = "#CC79A7"),
+    Survived = c(Yes = "#32A02D", No = "#E31A1C"),
+    Class = c("Crew" = "#F9F7EAFF", "1st" = "#006E37FF", "2nd" = "#8DB580FF", "3rd" = "#D9E5BDFF"),
+    Age = c(Child = "#35B779FF", Adult = "#440154FF")
+  ),
+  options = ggstack_options(show_legend = TRUE)
+)
+```
+
+Lets make the same plot except heirarchically sort on multiple arguments
+
+``` r
+ggstack(
+  titanic.raw,
+  col_sort = c("Class", "Age", "Sex"), sort_type = "frequency",
+  palettes = list(
+    Sex = c(Male = "#0072B2", Female = "#CC79A7"),
+    Survived = c(Yes = "#32A02D", No = "#E31A1C"),
+    Class = c("Crew" = "#F9F7EAFF", "1st" = "#006E37FF", "2nd" = "#8DB580FF", "3rd" = "#D9E5BDFF"),
+    Age = c(Child = "#35B779FF", Adult = "#440154FF")
+  ),
+  options = ggstack_options(show_legend = TRUE)
+)
+```
+
+### Palmer Penguins
+
+Gentoo penguins from Biscoe Island have the shallowest bills depths.
+
+``` r
+library(palmerpenguins)
+
+# Drop Year Column
+penguins$year <- NULL
+
+ggstack(
+  penguins,
+  palettes = list(
+    species = c(Chinstrap = "#C55BCC", Adelie = "#FF7F02", Gentoo = "#047476"),
+    sex = c(male = "#0072B2", female = "#CC79A7"),
+    island = c(Biscoe = "#E69F00", Dream = "#56B4E9", Torgersen = "#009E73")
+  ),
+  options = ggstack_options(
+    relative_height_numeric = 1.2,
+    show_legend = TRUE,
+  )
+)
+#> 
+#> ── Running ggstack ─────────────────────────────────────────────────────────────
+#> 
+#> ── Sorting
+#> ℹ Sorting X axis by: Order of appearance
+#> 
+#> ── Generating Plot
+#> ℹ Found 7 plottable columns in data
+#> ✔ Plotting column species
+#> ✔ Plotting column island
+#> ✔ Plotting column bill_length_mm
+#> ✔ Plotting column bill_depth_mm
+#> ✔ Plotting column flipper_length_mm
+#> ✔ Plotting column body_mass_g
+#> ✔ Plotting column sex
+#> ℹ Stacking plots vertically
+#> ℹ Making plot interactive since `interactive = TRUE`
+```
+
+## Artificial Data
+
+### Inbuilt ggEDA example
+
+``` r
+# Plot data, sort by Glasses
+ggstack(
+  baseballfans,
+  col_id = "ID",
+  col_sort = "Glasses",
+  options = ggstack_options(legend_nrow = 2)
+)
+```
+
+### Lazy Birdwatcher
+
+The simulated “Lazy Birdwatcher” dataset records magpie observations by
+Robert and Catherine. Robert doesn’t birdwatch on weekends, resulting in
+missing data for him on those days. This pattern of missingness,
+dependent on both person and day, is hard to detect using
+one-dimensional EDA tools like skimr or two-dimensional tools like
+ggpairs from the GGally package, as they don’t capture multi-variable
+interactions contributing to the missingness.
+
+``` r
+# Plot lazy birdwatcher dataset by Number of Magpies Observed
+ggstack(
+  lazy_birdwatcher,
+  col_sort = "Magpies",
+  palettes = list(
+    Birdwatcher = c(Robert = "#E69F00", Catherine = "#999999"),
+    Day = c(Weekday = "#999999", Weekend = "#009E73")
+  ),
+  options = ggstack_options(
+    show_legend = TRUE,
+    fontsize_barplot_y_numbers = 12,
+    legend_text_size = 16,
+    legend_key_size = 1,
+    legend_nrow = 1,
+  )
+)
+```

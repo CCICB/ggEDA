@@ -1,0 +1,74 @@
+# Parallel Coordinate Plots: Automaticaly Ordering Axes
+
+A major challenge when visualizing parallel coordinate plots is to
+choose the order in which axes should be displayed.
+
+This article describes the approach we use for crossing minimisation.
+Note that there are other approaches that do not explicitly attempt to
+minimise crossings, but rather order axes based on how informatively
+they distinguish groups of interest. For example ggEDA supports ordering
+axes based on how much mutual information they share with the feature
+being coloured by.
+
+Sometimes however, especially if you’re not colouring by a particular
+column of interest, crossing minimisation is the most sensible approach.
+Crossing minimimisation is a more complex topic, so we’re dedicating a
+full article to breaking down the approach used in ggEDA. Note crossing
+minimisation is automatically employed when `order_columns_by = "auto"`
+and no colouring is applied
+
+Here we describe an approach that involves
+
+1.  For each pair of dimensions, count how many crossings occur. (Could
+    be extended to support axis inversions by inverting the axis,
+    computing crossings again, and taking the minimum, although this is
+    not yet implemented in ggEDA).
+2.  Conceptualise this pairwise matrix as a graph, where each dimension
+    is a node, and edge weights are the number of crossings between
+    them. Our problem is finding the ‘shortest’ (i.e. lowest total
+    crossings) path through the graph that visits each node once.
+3.  Convert this to the [travelling salesman
+    problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) -
+    depending on the algorithm you use, you may need to add an extra
+    node that is connected to every other node with ‘0’ crossings (to
+    serve as the start-point). We won’t need to do this (for reasons
+    that will become clear when we talk about the algorithm)
+4.  If the number of dimensions is small (\<8) we can find the optimal
+    axis-order by brute-force. If the number of dimensions is larger
+    (\>=8), we’ll use the **repetitive nearest neighbor (rnn)**
+    heuristic approach with two-opt optimisation (**two-opt**),
+    implemented in the\`TSP\` package.
+
+Note the **rnn** + **two-opt** appraoch does NOT guarantee you find the
+optimal solution, but will run quickly and find near-optimal solutions
+in most cases, and can be implemented without taking heavy non-R
+dependencies external dependencies that complicate installation
+procedures (e.g. the concorde TSP solver).
+
+### Repetitive Nearest Neighbour Algorithm
+
+- Nearest Neighbour Tour (nn):
+
+  A path where the ‘next’ dimension is always chosen based on which one
+  has the lowest \# of crossings to the current current dimension
+
+- Repetitive Nearest Neighbour Algorithm (rnn):
+
+  Build a separate nearest neighbour tour using each dimension as a
+  starting point. Return only the tour producing the lowest number of
+  crossings
+
+Obviously there are certain configurations of networks where nearest
+neighbour algorithms will find highly non-optimal paths. To (partially)
+mitigate this we take our best **rnn** solution and improve it using the
+**two-opt** (a.k.a pairwise exchange) algorithm. Two-Opt systematically
+removes and replaces two edges and in the graph. We run a complete 2-opt
+local search, which will compare every possible valid combination of the
+swapping mechanism.
+
+## Alternative Metrics to Minimise
+
+We can use the same algorithmic solution to minimise metrics other than
+number of crossings, including ‘approximations’ of crossing numbers
+based on subsets of data (to save time), or the mutual information
+distance between each pair of dimensions (based on Joe et al. 1989).
