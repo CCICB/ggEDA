@@ -328,6 +328,7 @@ ggparallel <- function(
       ) +
     ggplot2::scale_x_discrete(
       position = "top",
+      expand = options$expand_x,
       labels = if(options$beautify_text) options$beautify_function else ggplot2::waiver()
     ) +
     ggplot2::scale_y_continuous(expand = c(0.2, 0)) +

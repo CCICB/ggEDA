@@ -21,6 +21,7 @@
 #' @param x_axis_text_angle Angle of the x axis text describing column names (number)
 #' @param x_axis_text_hjust Horizontal Justification of the x axis text describing column names (number)
 #' @param x_axis_text_vjust Vertical Justification of the x axis text describing column names (number)
+#' @param expand_x A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function [ggplot2::expansion()] to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.
 #' @param show_column_names Show column names as x axis text (flag)
 #' @param show_points Show points (flag)
 #' @param show_bounds_labels Show bounds (min and max value) of each feature with labels above / below the axes (flag)
@@ -55,6 +56,9 @@ ggparallel_options <- function(
   show_points = FALSE,
   show_bounds_labels = FALSE,
   show_bounds_rect = FALSE,
+
+  # Axis settings
+  expand_x = ggplot2::waiver(),
 
   # Line
   line_alpha = 0.5,
@@ -143,6 +147,7 @@ ggparallel_options <- function(
     line_width = line_width,
     line_type = line_type,
     x_axis_gridlines = x_axis_gridlines,
+    expand_x = expand_x,
     fontsize_x_axis_text = fontsize_x_axis_text,
     interactive_svg_width = interactive_svg_width,
     interactive_svg_height = interactive_svg_height

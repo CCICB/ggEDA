@@ -20,6 +20,9 @@
 #' @param fontsize_y_title Font size of the y axis titles (a.k.a the data.frame column names) (number).
 #' @param fontface_y_title Font face of the y axis titles (a.k.a the data.frame column names). One of "plain", "italic", "bold", "bold.italic".
 #' @param y_axis_position Position of the y-axis ("left" or "right").
+#' @param margin_y_title Margin of y axis titles for discrete properties (or numeric properties when numeric_plot_type = "heatmap"). Expects NULL, or a call to [ggplot2::margin()].
+#' @param margin_y_numbers Margin of y axis titles and numbers and title of numeric properties (when numeric_plot_type = "bar"). Expects NULL, or a call to [ggplot2::margin()].
+#' @param expand_x A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function [ggplot2::expansion()] to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.
 #' @param numeric_plot_type Type of visualization for numeric data: "bar" or "heatmap".
 #' @param colours_default Default colors for categorical variables without a custom palette.
 #' @param colours_default_logical Colors for binary variables: a vector of three colors representing `TRUE`, `FALSE`, and `NA` respectively (character).
@@ -40,6 +43,7 @@
 #' @param cli_header Text used for h1 header. Included so it can be tweaked by packages that use ggstack, so they can customise how the info messages appear.
 #' @param interactive_svg_width,interactive_svg_height width and height of the interactive graphic region (in inches). Only used when `interactive = TRUE`.
 #' @param colours_values_heatmap Color for heatmap values (string).
+#'
 #' @return A list of visualization parameters for `ggstack`.
 #' @export
 #' @inherit ggstack examples
@@ -57,10 +61,12 @@ ggstack_options <- function(
     legend_orientation_heatmap = c("horizontal", "vertical"),
     show_legend = TRUE,
     legend_position = c("right", "left", "bottom", "top"),
+
     # Missing Data
     na_marker = "!", na_marker_size = 8, na_marker_colour = "black",
     show_na_marker_categorical = FALSE,
     show_na_marker_heatmap = FALSE,
+
     # Heatmap
     colours_heatmap_low = "purple",
     colours_heatmap_high = "seagreen",
@@ -68,6 +74,7 @@ ggstack_options <- function(
     fontsize_values_heatmap = 3,
     show_values_heatmap = FALSE,
     colours_values_heatmap = "white",
+
     # Global Paramaters
     vertical_spacing = 0,
     numeric_plot_type = c("bar", "heatmap"),
@@ -75,9 +82,14 @@ ggstack_options <- function(
     width = 0.9,
     relative_height_numeric = 4,
     cli_header = "Running ggstack",
+
+    # Scales
+    expand_x = ggplot2::waiver(), #How much to expand x_scales for discrete and continous axes (see ?ggplot2::scale_x_continuous)
+
     # Interactivity
     interactive_svg_width = NULL,
     interactive_svg_height = NULL,
+
     # Text
     fontsize_barplot_y_numbers = 8,
     max_digits_barplot_y_numbers = 3,
@@ -85,7 +97,11 @@ ggstack_options <- function(
     fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
     beautify_text = TRUE,
     beautify_values = FALSE,
-    beautify_function = beautify
+    beautify_function = beautify,
+
+    # Margins
+    margin_y_title = NULL,
+    margin_y_numbers = NULL
     ) {
   # Legend-related
   assertions::assert_flag(show_legend)
@@ -179,6 +195,9 @@ ggstack_options <- function(
     fontsize_values_heatmap = fontsize_values_heatmap,
     colours_values_heatmap = colours_values_heatmap,
     relative_height_numeric = relative_height_numeric,
+    expand_x = expand_x,
+    margin_y_title = margin_y_title,
+    margin_y_numbers = margin_y_numbers,
     width = width,
     interactive_svg_width = interactive_svg_width,
     interactive_svg_height = interactive_svg_height

@@ -36,6 +36,7 @@ ggstack_options(
   width = 0.9,
   relative_height_numeric = 4,
   cli_header = "Running ggstack",
+  expand_x = ggplot2::waiver(),
   interactive_svg_width = NULL,
   interactive_svg_height = NULL,
   fontsize_barplot_y_numbers = 8,
@@ -44,7 +45,9 @@ ggstack_options(
   fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
   beautify_text = TRUE,
   beautify_values = FALSE,
-  beautify_function = beautify
+  beautify_function = beautify,
+  margin_y_title = NULL,
+  margin_y_numbers = NULL
 )
 }
 \arguments{
@@ -108,6 +111,8 @@ ggstack_options(
 
 \item{cli_header}{Text used for h1 header. Included so it can be tweaked by packages that use ggstack, so they can customise how the info messages appear.}
 
+\item{expand_x}{A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function \code{\link[ggplot2:expansion]{ggplot2::expansion()}} to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.}
+
 \item{interactive_svg_width, interactive_svg_height}{width and height of the interactive graphic region (in inches). Only used when \code{interactive = TRUE}.}
 
 \item{fontsize_barplot_y_numbers}{fontsize of the text describing numeric barplot max & min values (number).}
@@ -123,6 +128,10 @@ ggstack_options(
 \item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)}
 
 \item{beautify_function}{a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.}
+
+\item{margin_y_title}{Margin of y axis titles for discrete properties (or numeric properties when numeric_plot_type = "heatmap"). Expects NULL, or a call to \code{\link[ggplot2:element]{ggplot2::margin()}}.}
+
+\item{margin_y_numbers}{Margin of y axis titles and numbers and title of numeric properties (when numeric_plot_type = "bar"). Expects NULL, or a call to \code{\link[ggplot2:element]{ggplot2::margin()}}.}
 }
 \value{
 A list of visualization parameters for \code{ggstack}.
