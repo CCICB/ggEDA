@@ -448,8 +448,7 @@ ggstack <- function(
             legend_key_size = options$legend_key_size,
             vertical_spacing = options$vertical_spacing,
             fontsize_y_title = options$fontsize_y_title,
-            margin_y_title = options$margin_y_title,
-            margin_y_numbers = options$margin_y_numbers
+            margin_y_title = options$margin_y_title
           ) +
           ggplot2::scale_fill_gradient(
             low = options$colours_heatmap_low,
