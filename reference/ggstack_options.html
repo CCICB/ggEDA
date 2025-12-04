@@ -76,6 +76,7 @@
 <span>  width <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>  relative_height_numeric <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  cli_header <span class="op">=</span> <span class="st">"Running ggstack"</span>,</span>
+<span>  expand_x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  interactive_svg_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  interactive_svg_height <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  fontsize_barplot_y_numbers <span class="op">=</span> <span class="fl">8</span>,</span>
@@ -84,7 +85,9 @@
 <span>  fontface_y_title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plain"</span>, <span class="st">"italic"</span>, <span class="st">"bold"</span>, <span class="st">"bold.italic"</span><span class="op">)</span>,</span>
 <span>  beautify_text <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  beautify_values <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  beautify_function <span class="op">=</span> <span class="va">beautify</span></span>
+<span>  beautify_function <span class="op">=</span> <span class="va">beautify</span>,</span>
+<span>  margin_y_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  margin_y_numbers <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -212,6 +215,10 @@
 <dd><p>Text used for h1 header. Included so it can be tweaked by packages that use ggstack, so they can customise how the info messages appear.</p></dd>
 
 
+<dt id="arg-expand-x">expand_x<a class="anchor" aria-label="anchor" href="#arg-expand-x"></a></dt>
+<dd><p>A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function <code><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">ggplot2::expansion()</a></code> to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.</p></dd>
+
+
 <dt id="arg-interactive-svg-width-interactive-svg-height">interactive_svg_width, interactive_svg_height<a class="anchor" aria-label="anchor" href="#arg-interactive-svg-width-interactive-svg-height"></a></dt>
 <dd><p>width and height of the interactive graphic region (in inches). Only used when <code>interactive = TRUE</code>.</p></dd>
 
@@ -242,6 +249,14 @@
 
 <dt id="arg-beautify-function">beautify_function<a class="anchor" aria-label="anchor" href="#arg-beautify-function"></a></dt>
 <dd><p>a function that takes a string and returns a nicely formatted string. Use to beautify axis &amp; legend titles when <code>beautify_text=TRUE</code>, and legend values when <code>beautify_values=TRUE</code>.</p></dd>
+
+
+<dt id="arg-margin-y-title">margin_y_title<a class="anchor" aria-label="anchor" href="#arg-margin-y-title"></a></dt>
+<dd><p>Margin of y axis titles for discrete properties (or numeric properties when numeric_plot_type = "heatmap"). Expects NULL, or a call to <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">ggplot2::margin()</a></code>.</p></dd>
+
+
+<dt id="arg-margin-y-numbers">margin_y_numbers<a class="anchor" aria-label="anchor" href="#arg-margin-y-numbers"></a></dt>
+<dd><p>Margin of y axis titles and numbers and title of numeric properties (when numeric_plot_type = "bar"). Expects NULL, or a call to <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">ggplot2::margin()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

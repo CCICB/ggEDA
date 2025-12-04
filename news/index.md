@@ -2,6 +2,11 @@
 
 ## ggEDA (development version)
 
+- Added margin_y_numbers and margin_y_title to `ggstack`
+
+- Added `expand_x` parameter to `ggstack_options` and
+  `ggparallel_options`
+
 - Can customise fontface of y-axis titles using the fontface_y_title
   argument of ggstack_options
 

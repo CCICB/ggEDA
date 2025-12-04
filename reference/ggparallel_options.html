@@ -64,6 +64,7 @@
 <span>  show_points <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  show_bounds_labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  show_bounds_rect <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  expand_x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  line_alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  line_width <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  line_type <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -151,6 +152,10 @@
 
 <dt id="arg-show-bounds-rect">show_bounds_rect<a class="anchor" aria-label="anchor" href="#arg-show-bounds-rect"></a></dt>
 <dd><p>Show bounds (min and max value) of each feature with a rectangular graphic (flag)</p></dd>
+
+
+<dt id="arg-expand-x">expand_x<a class="anchor" aria-label="anchor" href="#arg-expand-x"></a></dt>
+<dd><p>A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function <code><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">ggplot2::expansion()</a></code> to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.</p></dd>
 
 
 <dt id="arg-line-alpha">line_alpha<a class="anchor" aria-label="anchor" href="#arg-line-alpha"></a></dt>

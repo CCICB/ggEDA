@@ -38,6 +38,7 @@ ggstack_options(
   width = 0.9,
   relative_height_numeric = 4,
   cli_header = "Running ggstack",
+  expand_x = ggplot2::waiver(),
   interactive_svg_width = NULL,
   interactive_svg_height = NULL,
   fontsize_barplot_y_numbers = 8,
@@ -46,7 +47,9 @@ ggstack_options(
   fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
   beautify_text = TRUE,
   beautify_values = FALSE,
-  beautify_function = beautify
+  beautify_function = beautify,
+  margin_y_title = NULL,
+  margin_y_numbers = NULL
 )
 ```
 
@@ -181,6 +184,15 @@ ggstack_options(
   Text used for h1 header. Included so it can be tweaked by packages
   that use ggstack, so they can customise how the info messages appear.
 
+- expand_x:
+
+  A vector of range expansion constants used to add some padding around
+  the data to ensure that they are placed some distance away from the
+  axes. Use the convenience function
+  [`ggplot2::expansion()`](https://ggplot2.tidyverse.org/reference/expansion.html)
+  to generate the values for the expand argument. The defaults are to
+  expand the scale by 0.6 units on each side.
+
 - interactive_svg_width, interactive_svg_height:
 
   width and height of the interactive graphic region (in inches). Only
@@ -221,6 +233,18 @@ ggstack_options(
   a function that takes a string and returns a nicely formatted string.
   Use to beautify axis & legend titles when `beautify_text=TRUE`, and
   legend values when `beautify_values=TRUE`.
+
+- margin_y_title:
+
+  Margin of y axis titles for discrete properties (or numeric properties
+  when numeric_plot_type = "heatmap"). Expects NULL, or a call to
+  [`ggplot2::margin()`](https://ggplot2.tidyverse.org/reference/element.html).
+
+- margin_y_numbers:
+
+  Margin of y axis titles and numbers and title of numeric properties
+  (when numeric_plot_type = "bar"). Expects NULL, or a call to
+  [`ggplot2::margin()`](https://ggplot2.tidyverse.org/reference/element.html).
 
 ## Value
 

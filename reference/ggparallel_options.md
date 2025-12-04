@@ -26,6 +26,7 @@ ggparallel_options(
   show_points = FALSE,
   show_bounds_labels = FALSE,
   show_bounds_rect = FALSE,
+  expand_x = ggplot2::waiver(),
   line_alpha = 0.5,
   line_width = 0.5,
   line_type = 1,
@@ -121,6 +122,15 @@ ggparallel_options(
 
   Show bounds (min and max value) of each feature with a rectangular
   graphic (flag)
+
+- expand_x:
+
+  A vector of range expansion constants used to add some padding around
+  the data to ensure that they are placed some distance away from the
+  axes. Use the convenience function
+  [`ggplot2::expansion()`](https://ggplot2.tidyverse.org/reference/expansion.html)
+  to generate the values for the expand argument. The defaults are to
+  expand the scale by 0.6 units on each side.
 
 - line_alpha:
 
