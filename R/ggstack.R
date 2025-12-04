@@ -474,6 +474,12 @@ ggstack <- function(
   # Remove null columns
   gglist <- gglist[!vapply(gglist, is.null, logical(1))]
 
+  # Set plot margins to allow a buffer to be set
+  for (i in seq_along(gglist)){
+    if(i == length(gglist)) break # break early to avoid adding margin to last plot
+    gglist[[i]] <- gglist[[i]] + ggplot2::theme(plot.margin = ggplot2::margin(t=0, r=0, b=options$inter_plot_spacing, l=0, unit = "pt"))
+  }
+
   # Align only axes (not labels)
   gglist <- lapply(gglist, FUN = function(p) {
     patchwork::free(p, type = "label")
