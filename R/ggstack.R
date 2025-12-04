@@ -318,8 +318,8 @@ ggstack <- function(
           ggplot2::guides(fill = ggplot2::guide_legend(
             title.position = options$legend_title_position,
             title = if (options$beautify_text) options$beautify_function(colname) else colname,
-            nrow = min(ndistinct_including_na, options$legend_nrow),
-            ncol = min(ndistinct_including_na, options$legend_ncol),
+            nrow = if(!is.null(options$legend_nrow)) min(ndistinct_including_na, options$legend_nrow) else NULL,
+            ncol = if(!is.null(options$legend_ncol)) min(ndistinct_including_na, options$legend_ncol) else NULL
           )) +
           theme_categorical(
             show_legend_titles = options$show_legend_titles,
