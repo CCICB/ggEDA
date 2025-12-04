@@ -1,10 +1,14 @@
 # ggEDA (development version)
 
+* Added `inter_plot_spacing` paramater to `ggstack_options` controlling the vertical space between each of the stacked plots 
+
 * Added margin_y_numbers and margin_y_title to `ggstack`
 
 * Added `expand_x` parameter to `ggstack_options` and `ggparallel_options`
 
 * Can customise fontface of y-axis titles using the fontface_y_title argument of ggstack_options
+
+* Fixed bug where which caused legend_ncol to be ignored
 
 # ggEDA 0.2.0
 

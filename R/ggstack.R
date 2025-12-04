@@ -318,8 +318,8 @@ ggstack <- function(
           ggplot2::guides(fill = ggplot2::guide_legend(
             title.position = options$legend_title_position,
             title = if (options$beautify_text) options$beautify_function(colname) else colname,
-            nrow = min(ndistinct_including_na, options$legend_nrow),
-            ncol = min(ndistinct_including_na, options$legend_ncol),
+            nrow = if(!is.null(options$legend_nrow)) min(ndistinct_including_na, options$legend_nrow) else NULL,
+            ncol = if(!is.null(options$legend_ncol)) min(ndistinct_including_na, options$legend_ncol) else NULL
           )) +
           theme_categorical(
             show_legend_titles = options$show_legend_titles,
@@ -473,6 +473,12 @@ ggstack <- function(
 
   # Remove null columns
   gglist <- gglist[!vapply(gglist, is.null, logical(1))]
+
+  # Set plot margins to allow a buffer to be set
+  for (i in seq_along(gglist)){
+    if(i == length(gglist)) break # break early to avoid adding margin to last plot
+    gglist[[i]] <- gglist[[i]] + ggplot2::theme(plot.margin = ggplot2::margin(t=0, r=0, b=options$inter_plot_spacing, l=0, unit = "pt"))
+  }
 
   # Align only axes (not labels)
   gglist <- lapply(gglist, FUN = function(p) {
