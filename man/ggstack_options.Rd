@@ -36,6 +36,7 @@ ggstack_options(
   width = 0.9,
   relative_height_numeric = 4,
   cli_header = "Running ggstack",
+  expand_x = ggplot2::waiver(),
   interactive_svg_width = NULL,
   interactive_svg_height = NULL,
   fontsize_barplot_y_numbers = 8,
@@ -107,6 +108,8 @@ ggstack_options(
 \item{relative_height_numeric}{how many times taller should numeric plots be relative to categorical tile plots. Only taken into account if numeric_plot_type == "bar" (number)}
 
 \item{cli_header}{Text used for h1 header. Included so it can be tweaked by packages that use ggstack, so they can customise how the info messages appear.}
+
+\item{expand_x}{A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function \code{\link[ggplot2:expansion]{ggplot2::expansion()}} to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.}
 
 \item{interactive_svg_width, interactive_svg_height}{width and height of the interactive graphic region (in inches). Only used when \code{interactive = TRUE}.}
 

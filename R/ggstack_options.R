@@ -20,6 +20,7 @@
 #' @param fontsize_y_title Font size of the y axis titles (a.k.a the data.frame column names) (number).
 #' @param fontface_y_title Font face of the y axis titles (a.k.a the data.frame column names). One of "plain", "italic", "bold", "bold.italic".
 #' @param y_axis_position Position of the y-axis ("left" or "right").
+#' @param expand_x A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function [ggplot2::expansion()] to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.
 #' @param numeric_plot_type Type of visualization for numeric data: "bar" or "heatmap".
 #' @param colours_default Default colors for categorical variables without a custom palette.
 #' @param colours_default_logical Colors for binary variables: a vector of three colors representing `TRUE`, `FALSE`, and `NA` respectively (character).
@@ -40,6 +41,7 @@
 #' @param cli_header Text used for h1 header. Included so it can be tweaked by packages that use ggstack, so they can customise how the info messages appear.
 #' @param interactive_svg_width,interactive_svg_height width and height of the interactive graphic region (in inches). Only used when `interactive = TRUE`.
 #' @param colours_values_heatmap Color for heatmap values (string).
+#'
 #' @return A list of visualization parameters for `ggstack`.
 #' @export
 #' @inherit ggstack examples
@@ -75,6 +77,10 @@ ggstack_options <- function(
     width = 0.9,
     relative_height_numeric = 4,
     cli_header = "Running ggstack",
+
+    # Scales
+    expand_x = ggplot2::waiver(), #How much to expand x_scales for discrete and continous axes (see ?ggplot2::scale_x_continuous)
+
     # Interactivity
     interactive_svg_width = NULL,
     interactive_svg_height = NULL,
@@ -179,6 +185,7 @@ ggstack_options <- function(
     fontsize_values_heatmap = fontsize_values_heatmap,
     colours_values_heatmap = colours_values_heatmap,
     relative_height_numeric = relative_height_numeric,
+    expand_x = expand_x,
     width = width,
     interactive_svg_width = interactive_svg_width,
     interactive_svg_height = interactive_svg_height

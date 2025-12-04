@@ -314,7 +314,7 @@ ggstack <- function(
               )
             }
           } +
-          ggplot2::scale_x_discrete(drop = drop_unused_id_levels) +
+          ggplot2::scale_x_discrete(drop = drop_unused_id_levels, expand = options$expand_x) +
           ggplot2::guides(fill = ggplot2::guide_legend(
             title.position = options$legend_title_position,
             title = if (options$beautify_text) options$beautify_function(colname) else colname,
@@ -378,7 +378,7 @@ ggstack <- function(
             vjust = -0.5,
             color = options$na_marker_colour
           ) +
-          ggplot2::scale_x_discrete(drop = drop_unused_id_levels) +
+          ggplot2::scale_x_discrete(drop = drop_unused_id_levels, expand = options$expand_x) +
           ggplot2::scale_y_continuous(
             breaks = breaks,
             labels = labels,
@@ -397,7 +397,7 @@ ggstack <- function(
           fill = .data[[colname]]
         )) +
           ggiraph::geom_tile_interactive(mapping = aes_interactive, width = options$width, na.rm = TRUE) +
-          ggplot2::scale_x_discrete(drop = drop_unused_id_levels) +
+          ggplot2::scale_x_discrete(drop = drop_unused_id_levels, expand = options$expand_x) +
           ggplot2::scale_y_discrete(position = options$y_axis_position) +
           {
             if (options$show_na_marker_heatmap) {
