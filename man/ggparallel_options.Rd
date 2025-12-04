@@ -24,6 +24,7 @@ ggparallel_options(
   show_points = FALSE,
   show_bounds_labels = FALSE,
   show_bounds_rect = FALSE,
+  expand_x = ggplot2::waiver(),
   line_alpha = 0.5,
   line_width = 0.5,
   line_type = 1,
@@ -70,6 +71,8 @@ ggparallel_options(
 \item{show_bounds_labels}{Show bounds (min and max value) of each feature with labels above / below the axes (flag)}
 
 \item{show_bounds_rect}{Show bounds (min and max value) of each feature with a rectangular graphic (flag)}
+
+\item{expand_x}{A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function \code{\link[ggplot2:expansion]{ggplot2::expansion()}} to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.}
 
 \item{line_alpha}{Alpha of line geom (number)}
 
