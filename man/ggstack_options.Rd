@@ -45,7 +45,9 @@ ggstack_options(
   fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
   beautify_text = TRUE,
   beautify_values = FALSE,
-  beautify_function = beautify
+  beautify_function = beautify,
+  margin_y_title = NULL,
+  margin_y_numbers = NULL
 )
 }
 \arguments{

@@ -330,7 +330,8 @@ ggstack <- function(
             legend_text_size = options$legend_text_size,
             legend_key_size = options$legend_key_size,
             vertical_spacing = options$vertical_spacing,
-            fontsize_y_title = options$fontsize_y_title
+            fontsize_y_title = options$fontsize_y_title,
+            margin_y_title = options$margin_y_title
           ) +
           ggplot2::ylab(if (options$beautify_text) options$beautify_function(colname) else colname) +
           ggplot2::scale_fill_manual(
@@ -386,7 +387,12 @@ ggstack <- function(
             limits = c(breaks[3], breaks[1]),
             expand = c(0, 0)
           ) +
-          theme_numeric_bar(vertical_spacing = options$vertical_spacing, fontsize_barplot_y_numbers = options$fontsize_barplot_y_numbers)
+          theme_numeric_bar(
+            vertical_spacing = options$vertical_spacing,
+            fontsize_barplot_y_numbers = options$fontsize_barplot_y_numbers,
+            margin_y_title = options$margin_y_title,
+            margin_y_numbers = options$margin_y_numbers
+            )
       }
       # Numeric Heatmap -------------------------------------------------------------------------
       else if (coltype == "numeric" && options$numeric_plot_type == "heatmap") {
@@ -441,7 +447,9 @@ ggstack <- function(
             legend_text_size = options$legend_text_size,
             legend_key_size = options$legend_key_size,
             vertical_spacing = options$vertical_spacing,
-            fontsize_y_title = options$fontsize_y_title
+            fontsize_y_title = options$fontsize_y_title,
+            margin_y_title = options$margin_y_title,
+            margin_y_numbers = options$margin_y_numbers
           ) +
           ggplot2::scale_fill_gradient(
             low = options$colours_heatmap_low,
@@ -660,7 +668,10 @@ choose_colours <- function(data, palettes, plottable, ndistinct, coltype, colour
 
 
 
-theme_categorical <- function(fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, show_legend_titles = FALSE, legend_position = "right", legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
+theme_categorical <- function(
+    fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, show_legend_titles = FALSE, legend_position = "right", legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0,
+    margin_y_title = NULL
+    ) {
   ggplot2::theme_minimal() %+replace%
 
     ggplot2::theme(
@@ -669,8 +680,8 @@ theme_categorical <- function(fontsize_y_title = 12, fontface_y_title = "plain",
       axis.text.y.right = element_blank(),
       axis.text.x = element_blank(),
       axis.title.x = element_blank(),
-      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0),
-      axis.title.y.right = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0),
+      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0, margin = margin_y_title),
+      axis.title.y.right = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0, margin = margin_y_title),
       legend.title = if (show_legend_titles) element_text(size = legend_title_size, face = "bold", hjust = 0) else element_blank(),
       legend.justification = c(0, 0.5),
       legend.margin = ggplot2::margin(0, 0, 0, 0),
@@ -689,7 +700,7 @@ theme_categorical <- function(fontsize_y_title = 12, fontface_y_title = "plain",
     )
 }
 
-theme_numeric_bar <- function(vertical_spacing = 0, fontsize_barplot_y_numbers = 8) {
+theme_numeric_bar <- function(vertical_spacing = 0, fontsize_barplot_y_numbers = 8, margin_y_title=NULL, margin_y_numbers = NULL) {
   ggplot2::theme_minimal() %+replace%
 
     theme(
@@ -700,20 +711,20 @@ theme_numeric_bar <- function(vertical_spacing = 0, fontsize_barplot_y_numbers =
       axis.title.x = element_blank(),
       axis.line.y = element_line(linewidth = 0.3),
       axis.line.x = element_blank(),
-      axis.text.y.left = ggtext::element_markdown(size = fontsize_barplot_y_numbers, colour = "black"),
-      axis.text.y.right = ggtext::element_markdown(size = fontsize_barplot_y_numbers, hjust = 0),
+      axis.text.y.left = ggtext::element_markdown(size = fontsize_barplot_y_numbers, margin = margin_y_numbers, colour = "black"),
+      axis.text.y.right = ggtext::element_markdown(size = fontsize_barplot_y_numbers, margin = margin_y_numbers,  hjust = 0),
       axis.ticks.y = element_blank(),
       strip.placement = "outside",
       plot.margin = ggplot2::margin(t = 5, r = 0, b = vertical_spacing + 5, l = 0, unit = "pt")
     )
 }
 
-theme_numeric_heatmap <- function(fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, legend_position = "right", show_legend_titles = FALSE, legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
+theme_numeric_heatmap <- function(fontsize_y_title = 12, fontface_y_title = "plain", show_legend = TRUE, margin_y_title=NULL, legend_position = "right", show_legend_titles = FALSE, legend_title_size = NULL, legend_text_size = NULL, legend_key_size = 0.3, vertical_spacing = 0) {
   ggplot2::theme_minimal() %+replace%
     theme(
       panel.grid = element_blank(),
       axis.text.y = element_blank(),
-      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0, colour = "black"),
+      axis.title.y = element_text(size = fontsize_y_title, face = fontface_y_title, angle = 0, margin = margin_y_title, colour = "black"),
       axis.text.x = element_blank(),
       axis.title.x = element_blank(),
       legend.title = if (show_legend_titles) element_text(size = legend_title_size, face = "bold", hjust = 0) else element_blank(),

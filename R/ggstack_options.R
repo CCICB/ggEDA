@@ -59,10 +59,12 @@ ggstack_options <- function(
     legend_orientation_heatmap = c("horizontal", "vertical"),
     show_legend = TRUE,
     legend_position = c("right", "left", "bottom", "top"),
+
     # Missing Data
     na_marker = "!", na_marker_size = 8, na_marker_colour = "black",
     show_na_marker_categorical = FALSE,
     show_na_marker_heatmap = FALSE,
+
     # Heatmap
     colours_heatmap_low = "purple",
     colours_heatmap_high = "seagreen",
@@ -70,6 +72,7 @@ ggstack_options <- function(
     fontsize_values_heatmap = 3,
     show_values_heatmap = FALSE,
     colours_values_heatmap = "white",
+
     # Global Paramaters
     vertical_spacing = 0,
     numeric_plot_type = c("bar", "heatmap"),
@@ -84,6 +87,7 @@ ggstack_options <- function(
     # Interactivity
     interactive_svg_width = NULL,
     interactive_svg_height = NULL,
+
     # Text
     fontsize_barplot_y_numbers = 8,
     max_digits_barplot_y_numbers = 3,
@@ -91,7 +95,11 @@ ggstack_options <- function(
     fontface_y_title = c("plain", "italic", "bold", "bold.italic"),
     beautify_text = TRUE,
     beautify_values = FALSE,
-    beautify_function = beautify
+    beautify_function = beautify,
+
+    # Margins
+    margin_y_title = NULL,
+    margin_y_numbers = NULL
     ) {
   # Legend-related
   assertions::assert_flag(show_legend)
@@ -186,6 +194,8 @@ ggstack_options <- function(
     colours_values_heatmap = colours_values_heatmap,
     relative_height_numeric = relative_height_numeric,
     expand_x = expand_x,
+    margin_y_title = margin_y_title,
+    margin_y_numbers = margin_y_numbers,
     width = width,
     interactive_svg_width = interactive_svg_width,
     interactive_svg_height = interactive_svg_height
