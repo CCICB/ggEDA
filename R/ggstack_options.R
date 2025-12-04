@@ -20,6 +20,8 @@
 #' @param fontsize_y_title Font size of the y axis titles (a.k.a the data.frame column names) (number).
 #' @param fontface_y_title Font face of the y axis titles (a.k.a the data.frame column names). One of "plain", "italic", "bold", "bold.italic".
 #' @param y_axis_position Position of the y-axis ("left" or "right").
+#' @param margin_y_title Margin of y axis titles for discrete properties (or numeric properties when numeric_plot_type = "heatmap"). Expects NULL, or a call to [ggplot2::margin()].
+#' @param margin_y_numbers Margin of y axis titles and numbers and title of numeric properties (when numeric_plot_type = "bar"). Expects NULL, or a call to [ggplot2::margin()].
 #' @param expand_x A vector of range expansion constants used to add some padding around the data to ensure that they are placed some distance away from the axes. Use the convenience function [ggplot2::expansion()] to generate the values for the expand argument. The defaults are to expand the scale by 0.6 units on each side.
 #' @param numeric_plot_type Type of visualization for numeric data: "bar" or "heatmap".
 #' @param colours_default Default colors for categorical variables without a custom palette.

@@ -128,6 +128,10 @@ ggstack_options(
 \item{beautify_values}{Beautify legend values to more human-readable forms (e.g. converting 'my_value' to 'My Value') (flag)}
 
 \item{beautify_function}{a function that takes a string and returns a nicely formatted string. Use to beautify axis & legend titles when \code{beautify_text=TRUE}, and legend values when \code{beautify_values=TRUE}.}
+
+\item{margin_y_title}{Margin of y axis titles for discrete properties (or numeric properties when numeric_plot_type = "heatmap"). Expects NULL, or a call to \code{\link[ggplot2:element]{ggplot2::margin()}}.}
+
+\item{margin_y_numbers}{Margin of y axis titles and numbers and title of numeric properties (when numeric_plot_type = "bar"). Expects NULL, or a call to \code{\link[ggplot2:element]{ggplot2::margin()}}.}
 }
 \value{
 A list of visualization parameters for \code{ggstack}.
