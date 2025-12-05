@@ -17,6 +17,8 @@ library(datarium)
 library(palmerpenguins)
 ```
 
+
+
 ## Examples with real datasets
 
 ### Chicken Weights by Feed
@@ -105,6 +107,36 @@ ggstack(
 )
 ```
 
+### Dry Beans (Parallel Coordinate Plots)
+
+```{r}
+ggparallel(
+ data = minibeans,
+ col_colour = "Class",
+ order_columns_by = "auto",
+ options = ggparallel_options(
+   interactive_svg_width = 7, 
+   interactive_svg_height = 4,
+   show_legend = FALSE
+ )
+)
+```
+Highlight a specific group (Ordering columns based on how well they differentiate 1 group from the rest, based on mutual information)
+
+```{r}
+ggparallel(
+ data = minibeans,
+ col_colour = "Class",
+ highlight = "DERMASON",
+ order_columns_by = "auto",
+ options = ggparallel_options(
+   interactive_svg_width = 7, 
+   interactive_svg_height = 4,
+   show_legend = TRUE
+ )
+)
+```
+
 ## Artificial Data
 
 ### Inbuilt ggEDA example
@@ -141,3 +173,7 @@ ggstack(
   )
 )
 ```
+
+
+
+
