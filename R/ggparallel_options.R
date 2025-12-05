@@ -121,6 +121,7 @@ ggparallel_options <- function(
 
   # Match argument values
   legend_position <- rlang::arg_match(legend_position)
+  legend_position <- if(!show_legend) "none" else legend_position
   legend_title_position <- rlang::arg_match(legend_title_position)
 
   # Create options list
