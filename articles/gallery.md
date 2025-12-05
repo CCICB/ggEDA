@@ -116,6 +116,42 @@ ggstack(
 #> ℹ Making plot interactive since `interactive = TRUE`
 ```
 
+### Dry Beans (Parallel Coordinate Plots)
+
+``` r
+ggparallel(
+ data = minibeans,
+ col_colour = "Class",
+ order_columns_by = "auto",
+ options = ggparallel_options(
+   interactive_svg_width = 7, 
+   interactive_svg_height = 4,
+   show_legend = FALSE
+ )
+)
+#> ℹ Ordering columns based on mutual information with [Class]
+#> ℹ Making plot interactive since `interactive = TRUE`
+```
+
+Highlight a specific group (Ordering columns based on how well they
+differentiate 1 group from the rest, based on mutual information)
+
+``` r
+ggparallel(
+ data = minibeans,
+ col_colour = "Class",
+ highlight = "DERMASON",
+ order_columns_by = "auto",
+ options = ggparallel_options(
+   interactive_svg_width = 7, 
+   interactive_svg_height = 4,
+   show_legend = TRUE
+ )
+)
+#> ℹ Ordering columns based on how well they differentiate 1 group from the rest [DERMASON] (based on mutual information)
+#> ℹ Making plot interactive since `interactive = TRUE`
+```
+
 ## Artificial Data
 
 ### Inbuilt ggEDA example

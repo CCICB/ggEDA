@@ -2,6 +2,8 @@
 
 ## ggEDA (development version)
 
+- Added horizontal line at y=0 to numeric barplots with negative values
+
 - Added `inter_plot_spacing` paramater to `ggstack_options` controlling
   the vertical space between each of the stacked plots
 
@@ -14,6 +16,9 @@
   argument of ggstack_options
 
 - Fixed bug where which caused legend_ncol to be ignored
+
+- Fixed bug where `show_legend` argument was ignored by
+  `ggparallel_options`
 
 ## ggEDA 0.2.0
 
