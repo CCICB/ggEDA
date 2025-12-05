@@ -10,8 +10,8 @@ version](https://img.shields.io/cran/v/ggEDA.svg)](https://CRAN.R-project.org/pa
 [![R-CMD-check](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml)
 [![lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Codecov branch
-coverage](https://codecov.io/gh/CCICB/ggEDA/branch/main/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA?branch=main)
+[![Codecov test
+coverage](https://codecov.io/gh/CCICB/ggEDA/graph/badge.svg)](https://app.codecov.io/gh/CCICB/ggEDA)
 [![Issues](https://img.shields.io/github/issues/CCICB/ggEDA)](https://github.com/CCICB/ggEDA/issues)
 [![Code
 size](https://img.shields.io/github/languages/code-size/CCICB/ggEDA)](https://github.com/CCICB/ggEDA)
