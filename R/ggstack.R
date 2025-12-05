@@ -393,6 +393,19 @@ ggstack <- function(
             margin_y_title = options$margin_y_title,
             margin_y_numbers = options$margin_y_numbers
             )
+
+        # Add hline at zero if there are non-infinite negative values in column
+        vals <- data[[colname]]
+        vals <- vals[!is.infinite(vals)]
+        has_negative_values <- min(vals, na.rm = TRUE) < 0
+
+        if (has_negative_values) {
+          gg <- gg + ggplot2::geom_hline(
+            yintercept = 0,
+            linewidth = 0.3,
+            colour = "black"
+          )
+        }
       }
       # Numeric Heatmap -------------------------------------------------------------------------
       else if (coltype == "numeric" && options$numeric_plot_type == "heatmap") {
