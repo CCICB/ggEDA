@@ -1,5 +1,9 @@
 # ggEDA (development version)
 
+* Multi-column sort now powered by `rank::rank_stratified()` for true stratified ranking. 
+See [rank release notes (0.2.0)](https://github.com/selkamand/rank/blob/main/NEWS.md#rank-020). 
+[#42](https://github.com/CCICB/ggEDA/pull/42)
+
 * Added horizontal line at y=0 to numeric barplots with negative values
 
 * Added `inter_plot_spacing` paramater to `ggstack_options` controlling the vertical space between each of the stacked plots 
