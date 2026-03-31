@@ -1,6 +1,6 @@
 # ggEDA (development version)
 
-* Added article on Saving Plots article
+* Added article on saving plots
 
 * Multi-column sort now powered by `rank::rank_stratified()` for true stratified ranking. 
 See [rank release notes (0.2.0)](https://github.com/selkamand/rank/blob/main/NEWS.md#rank-020). 
