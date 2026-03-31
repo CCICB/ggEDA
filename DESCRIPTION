@@ -24,7 +24,7 @@ Imports:
     ggtext,
     grDevices,
     patchwork (>= 1.3.0),
-    rank (>= 0.1.1),
+    rank (>= 0.2.0),
     rlang,
     scales
 Suggests: 

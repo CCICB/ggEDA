@@ -151,12 +151,16 @@ ggstack <- function(
       ))
     }
 
-    # Heirarchical Sort by specified columns
-    ranks <- lapply(col_sort, function(column_to_sort_by){
-      rank::smartrank(data[[column_to_sort_by]], sort_by = sort_type, desc = desc, verbose = FALSE)
-    })
+    # Stratified sort on specified columns
+    ranks <- rank::rank_stratified(
+      data,
+      cols = col_sort,
+      sort_by = sort_type,
+      desc = desc,
+      verbose = FALSE
+    )
 
-    order_hierarchical <- do.call(order, ranks)
+    order_hierarchical <- order(ranks)
     data <- data[order_hierarchical,]
     data[[col_id]] <- fct_inorder(data[[col_id]])
   }
