@@ -1,5 +1,8 @@
 # ggEDA (development version)
 
+* Fixed bug were categorical columns with large number of levels throw an error 
+even when custom palette is supplied ([issue 20](https://github.com/CCICB/ggEDA/issues/20)
+
 * Added article on saving plots
 
 * Multi-column sort now powered by `rank::rank_stratified()` for true stratified ranking. 
