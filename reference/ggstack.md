@@ -149,6 +149,7 @@ ggiraph interactive visualisation
 ## Examples
 
 ``` r
+
 # Create Basic Plot
 ggstack(baseballfans, col_id = "ID", col_sort = "Glasses")
 #> 

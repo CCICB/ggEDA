@@ -1,6 +1,7 @@
 # Gallery
 
 ``` r
+
 library(ggEDA)
 library(datarium)
 library(palmerpenguins)
@@ -18,6 +19,7 @@ library(palmerpenguins)
 Horsebean feed consistently produces the lowest chicken weights.
 
 ``` r
+
 ggstack(
   chickwts,
   col_sort = "weight",
@@ -36,6 +38,7 @@ The setosa species have drastically smaller petals then other iris
 species.
 
 ``` r
+
 ggstack(
   iris,
   options = ggstack_options(show_legend = TRUE)
@@ -47,6 +50,7 @@ ggstack(
 Most deaths in the titanic were male adults.
 
 ``` r
+
 ggstack(
   titanic.raw,
   palettes = list(
@@ -62,6 +66,7 @@ ggstack(
 Lets make the same plot except heirarchically sort on multiple arguments
 
 ``` r
+
 ggstack(
   titanic.raw,
   col_sort = c("Class", "Age", "Sex"), sort_type = "frequency",
@@ -80,6 +85,7 @@ ggstack(
 Gentoo penguins from Biscoe Island have the shallowest bills depths.
 
 ``` r
+
 library(palmerpenguins)
 
 # Drop Year Column
@@ -119,6 +125,7 @@ ggstack(
 ### Dry Beans (Parallel Coordinate Plots)
 
 ``` r
+
 ggparallel(
  data = minibeans,
  col_colour = "Class",
@@ -137,6 +144,7 @@ Highlight a specific group (Ordering columns based on how well they
 differentiate 1 group from the rest, based on mutual information)
 
 ``` r
+
 ggparallel(
  data = minibeans,
  col_colour = "Class",
@@ -157,6 +165,7 @@ ggparallel(
 ### Inbuilt ggEDA example
 
 ``` r
+
 # Plot data, sort by Glasses
 ggstack(
   baseballfans,
@@ -177,6 +186,7 @@ ggpairs from the GGally package, as they don’t capture multi-variable
 interactions contributing to the missingness.
 
 ``` r
+
 # Plot lazy birdwatcher dataset by Number of Magpies Observed
 ggstack(
   lazy_birdwatcher,

@@ -7,3 +7,5 @@
 - [Gallery](https://ccicb.github.io/ggEDA/articles/gallery.md):
 - [Parallel Coordinate Plots: Automaticaly Ordering
   Axes](https://ccicb.github.io/ggEDA/articles/pcp_axis_sorting.md):
+- [Saving
+  Plots](https://ccicb.github.io/ggEDA/articles/saving_plots.md):

@@ -258,6 +258,7 @@ A list of visualization parameters for `ggstack`.
 ## Examples
 
 ``` r
+
 # Create Basic Plot
 ggstack(baseballfans, col_id = "ID", col_sort = "Glasses")
 #> 

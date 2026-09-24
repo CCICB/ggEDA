@@ -17,6 +17,7 @@ To create ggEDA visualisations through a shiny app see
 ## Installation
 
 ``` r
+
 install.packages("ggEDA")
 ```
 
@@ -26,6 +27,7 @@ You can install the development version of ggEDA from
 [GitHub](https://github.com/CCICB/ggEDA) with:
 
 ``` r
+
 if (!require("remotes"))
     install.packages("remotes")
 
@@ -35,6 +37,7 @@ remotes::install_github("CCICB/ggEDA")
 Or from R-universe with:
 
 ``` r
+
 install.packages("ggEDA", repos = "https://ropensci.r-universe.dev")
 ```
 
@@ -44,6 +47,7 @@ For examples of interactive EDA plots see the [ggEDA
 gallery](https://CCICB.github.io/ggEDA/articles/gallery.html)
 
 ``` r
+
 # Load library
 library(ggEDA)
 
@@ -65,6 +69,7 @@ ggstack(
 Customise colours by supplying a named list to the `palettes` argument
 
 ``` r
+
 ggstack(
   baseballfans,
   col_id = "ID",
@@ -89,6 +94,7 @@ arrows to differentiate them from missing (NA) values which are
 represented by `!`.
 
 ``` r
+
 data <- data.frame(
   numbers = c(1:3, Inf, -Inf, NA), 
   letters = LETTERS[1:6]
@@ -104,6 +110,7 @@ the min/max colours, while na values remain grey. We can optionally add
 markers by setting `show_na_marker_heatmap = TRUE`
 
 ``` r
+
 ggstack(
   data, 
   interactive = FALSE, 
@@ -120,6 +127,7 @@ For datasets with many observations and mostly numeric features,
 parallel coordinate plots may be more appropriate.
 
 ``` r
+
 ggparallel(
  data = minibeans,
  col_colour = "Class",
@@ -132,6 +140,7 @@ ggparallel(
 ![](reference/figures/README-minibeans_class-1.png)
 
 ``` r
+
  ggparallel(
    data = minibeans,
    col_colour = "Class",
@@ -145,6 +154,7 @@ ggparallel(
 ![](reference/figures/README-minibeans_highlight-1.png)
 
 ``` r
+
  ggparallel(
    data = minibeans,
    order_columns_by = "auto",

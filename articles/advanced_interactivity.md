@@ -1,6 +1,7 @@
 # Advanced Interactivity
 
 ``` r
+
 library(ggEDA)
 ```
 
@@ -19,6 +20,7 @@ For example, lets add custom-tooltips to the `Magpie` column of the
 Values should represent what text to show in the tooltip.
 
 ``` r
+
 # No Custom Tooltip
 ggstack(lazy_birdwatcher)
 ```
@@ -30,6 +32,7 @@ automatically recognises this column (thanks to the suffix) and sets the
 tooltip accordingly.
 
 ``` r
+
 # Add a custom tooltip column
 lazy_birdwatcher["Magpies_tooltip"] <- ifelse(
   lazy_birdwatcher[["Magpies"]] > 3,
@@ -72,6 +75,7 @@ visualisation summarising the `palmer_penguins` dataset.
 ### Example Code
 
 ``` r
+
 library(uwot)
 library(ggplot2)
 library(patchwork)

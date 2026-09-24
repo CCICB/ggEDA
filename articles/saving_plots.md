@@ -1,0 +1,62 @@
+# Saving Plots
+
+``` r
+
+library(ggEDA)
+library(htmlwidgets) # install with `install.packages("htmlwidgets")`
+library(ggplot2)
+```
+
+There are many ways to save ggEDA plots. Two convenient strategies are
+
+1.  Save interactive plots as self-contained HTML files using the
+    [`saveWidget()`](https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html)
+    function from `htmlwidgets`.
+2.  Save static plots as png/tiff/pdf/etc. using the
+    [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html)
+    function from `ggplot2`
+
+## Saving interactive plots to HTML
+
+``` r
+
+
+# Create an interactive plot
+interactive_plot <- ggstack(
+  baseballfans,
+  col_id = "ID",
+  col_sort = "Glasses",
+  interactive = TRUE,
+  verbose = FALSE,
+  options = ggstack_options(legend_nrow = 2)
+)
+
+# Save as a self-encapsulated html widget
+saveWidget(interactive_plot, file = "interactive_plot.html")
+```
+
+## Saving static plots
+
+Simply create a non-interactive version of your plot and use ggsave.
+
+``` r
+
+
+# Create an static plot
+myplot <- ggstack(
+  baseballfans,
+  col_id = "ID",
+  col_sort = "Glasses",
+  interactive = FALSE, # Turn interactivity off
+  verbose = FALSE,
+  options = ggstack_options(legend_nrow = 2)
+)
+
+# Save as png/tiff/pdf etc.
+ggsave(filename = "my_plot.png", plot = myplot, width = 7, height = 5, dpi = 300) 
+ggsave(filename = "my_plot.tiff", plot = myplot, width = 7, height = 5, dpi = 300) 
+ggsave(filename = "my_plot.pdf", plot = myplot, width = 7, height = 5) 
+```
+
+For publication, you often want to set the `dpi` argument of `ggsave` to
+`300` for higher resolution images.
