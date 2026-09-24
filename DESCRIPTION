@@ -13,7 +13,6 @@ Description: Provides interactive visualisations for exploratory data analysis o
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 URL: https://github.com/CCICB/ggEDA, https://ccicb.github.io/ggEDA/
 BugReports: https://github.com/CCICB/ggEDA/issues
 Imports: 
@@ -34,8 +33,9 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     TSP
-Config/Needs/website: uwot, datarium, palmerpenguins
+Config/Needs/website: uwot, datarium, palmerpenguins, rmarkdown
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5)
 LazyData: true
+Config/roxygen2/version: 8.0.0
