@@ -20,6 +20,7 @@ commit](https://img.shields.io/github/last-commit/CCICB/ggEDA)](https://github.c
 [![r-universe](https://ccicb.r-universe.dev/badges/ggEDA)](https://ccicb.r-universe.dev)
 [![](http://cranlogs.r-pkg.org/badges/last-month/ggEDA)](https://cran.r-project.org/package=ggEDA)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/ggEDA)](https://cran.r-project.org/package=ggEDA)
+[![R-CMD-check](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCICB/ggEDA/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **ggEDA** streamlines exploratory data analysis by providing turnkey
