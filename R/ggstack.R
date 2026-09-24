@@ -100,7 +100,6 @@ ggstack <- function(
   # Conditional checks for non-ggstack_options parameters
   if (!is.null(cols_to_plot)) assertions::assert_names_include(data, names = cols_to_plot)
   if (!is.null(palettes)) assertions::assert_list(palettes)
-  if (!all(colnames(data) %in% names(palettes))) assertions::assert_greater_than_or_equal_to(length(options$colours_default), minimum = maxlevels)
 
   # Argument Matching
   sort_type <- rlang::arg_match(sort_type)
