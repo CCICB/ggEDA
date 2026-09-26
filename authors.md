@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/CCICB/ggEDA/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/CCICB/ggEDA/blob/v0.2.0.9000/DESCRIPTION)
 
 El-Kamand S (2026). *ggEDA: Turnkey Visualisations for Exploratory Data
 Analysis*. R package version 0.2.0.9000,
