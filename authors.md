@@ -10,16 +10,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/CCICB/ggEDA/blob/v0.2.0.9000/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/CCICB/ggEDA/blob/main/DESCRIPTION)
 
 El-Kamand S (2026). *ggEDA: Turnkey Visualisations for Exploratory Data
-Analysis*. R package version 0.2.0.9000,
+Analysis*. R package version 0.3.0.9000,
 <https://github.com/CCICB/ggEDA>.
 
     @Manual{,
       title = {ggEDA: Turnkey Visualisations for Exploratory Data Analysis},
       author = {Sam El-Kamand},
       year = {2026},
-      note = {R package version 0.2.0.9000},
+      note = {R package version 0.3.0.9000},
       url = {https://github.com/CCICB/ggEDA},
     }
