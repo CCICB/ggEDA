@@ -1,4 +1,4 @@
-# ggEDA (development version)
+# ggEDA 0.3.0
 
 * Fixed bug were categorical columns with large number of levels throw an error 
 even when custom palette is supplied ([issue 20](https://github.com/CCICB/ggEDA/issues/20)

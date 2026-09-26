@@ -15,3 +15,4 @@ inst/birdwatching.csv
 ^CRAN-SUBMISSION$
 ^shiny/
 ^site/
+^revdep/
